@@ -1,0 +1,6 @@
+﻿1. Doesn't react to "low" output, which isn't really low
+2. Can be seen as a threat by SmartScreen - Ain't nobody can fix it
+3. Using an EQ? - you're feked up.
+4. Having tickrate faster than 65Hz creates ~450 nulls in around 5 minutes of working. Increasing tickrate doesn't
+have an effect in the null creating tempo, while it has a visible effect on how LED stripe behave, so tickrate does
+change.

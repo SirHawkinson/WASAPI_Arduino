@@ -1,0 +1,19 @@
+﻿using System.Windows.Forms;
+
+namespace SoundSampler
+{
+    static class Program
+
+    {
+        static void Main()
+        {
+            
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            SamplerAppContext app = new SamplerAppContext();
+            Application.ApplicationExit += app.OnApplicationExit;
+            Application.Run(app);
+            //-0,0098x2+0,348x correctors
+        }   
+    }
+}
