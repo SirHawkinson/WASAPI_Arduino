@@ -1,10 +1,11 @@
 ﻿using System.Windows.Forms;
 
-namespace SoundSampler
+namespace WASAPI_Arduino
 {
     partial class Form1
     {
         public bool keyStroke = true;
+        public bool wtf = false;
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -95,7 +96,7 @@ namespace SoundSampler
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar1.Size = new System.Drawing.Size(45, 164);
             this.trackBar1.TabIndex = 12;
-            this.trackBar1.Value = Properties.Settings.Default.BarPreamp;
+            this.trackBar1.Value = global::WASAPI_Arduino.Properties.Settings.Default.BarPreamp;
             this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // trackBar2
@@ -107,7 +108,7 @@ namespace SoundSampler
             this.trackBar2.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar2.Size = new System.Drawing.Size(45, 164);
             this.trackBar2.TabIndex = 13;
-            this.trackBar2.Value = Properties.Settings.Default.Bar31;
+            this.trackBar2.Value = global::WASAPI_Arduino.Properties.Settings.Default.Bar31;
             this.trackBar2.ValueChanged += new System.EventHandler(this.trackBar2_Scroll);
             // 
             // trackBar3
@@ -119,7 +120,7 @@ namespace SoundSampler
             this.trackBar3.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar3.Size = new System.Drawing.Size(45, 164);
             this.trackBar3.TabIndex = 14;
-            this.trackBar3.Value = Properties.Settings.Default.Bar62;
+            this.trackBar3.Value = global::WASAPI_Arduino.Properties.Settings.Default.Bar62;
             this.trackBar3.ValueChanged += new System.EventHandler(this.trackBar3_Scroll);
             // 
             // trackBar4
@@ -131,7 +132,7 @@ namespace SoundSampler
             this.trackBar4.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar4.Size = new System.Drawing.Size(45, 164);
             this.trackBar4.TabIndex = 15;
-            this.trackBar4.Value = Properties.Settings.Default.Bar125;
+            this.trackBar4.Value = global::WASAPI_Arduino.Properties.Settings.Default.Bar125;
             this.trackBar4.ValueChanged += new System.EventHandler(this.trackBar4_Scroll);
             // 
             // trackBar5
@@ -143,7 +144,7 @@ namespace SoundSampler
             this.trackBar5.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar5.Size = new System.Drawing.Size(45, 164);
             this.trackBar5.TabIndex = 16;
-            this.trackBar5.Value = Properties.Settings.Default.Bar250;
+            this.trackBar5.Value = global::WASAPI_Arduino.Properties.Settings.Default.Bar250;
             this.trackBar5.ValueChanged += new System.EventHandler(this.trackBar5_Scroll);
             // 
             // trackBar6
@@ -155,7 +156,7 @@ namespace SoundSampler
             this.trackBar6.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar6.Size = new System.Drawing.Size(45, 164);
             this.trackBar6.TabIndex = 17;
-            this.trackBar6.Value = Properties.Settings.Default.Bar500;
+            this.trackBar6.Value = global::WASAPI_Arduino.Properties.Settings.Default.Bar500;
             this.trackBar6.ValueChanged += new System.EventHandler(this.trackBar6_Scroll);
             // 
             // trackBar7
@@ -167,7 +168,7 @@ namespace SoundSampler
             this.trackBar7.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar7.Size = new System.Drawing.Size(45, 164);
             this.trackBar7.TabIndex = 18;
-            this.trackBar7.Value = Properties.Settings.Default.Bar1000;
+            this.trackBar7.Value = global::WASAPI_Arduino.Properties.Settings.Default.Bar1000;
             this.trackBar7.ValueChanged += new System.EventHandler(this.trackBar7_Scroll);
             // 
             // trackBar8
@@ -179,7 +180,7 @@ namespace SoundSampler
             this.trackBar8.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar8.Size = new System.Drawing.Size(45, 164);
             this.trackBar8.TabIndex = 19;
-            this.trackBar8.Value = Properties.Settings.Default.Bar2000;
+            this.trackBar8.Value = global::WASAPI_Arduino.Properties.Settings.Default.Bar2000;
             this.trackBar8.ValueChanged += new System.EventHandler(this.trackBar8_Scroll);
             // 
             // trackBar9
@@ -191,7 +192,7 @@ namespace SoundSampler
             this.trackBar9.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar9.Size = new System.Drawing.Size(45, 164);
             this.trackBar9.TabIndex = 20;
-            this.trackBar9.Value = Properties.Settings.Default.Bar4000;
+            this.trackBar9.Value = global::WASAPI_Arduino.Properties.Settings.Default.Bar4000;
             this.trackBar9.ValueChanged += new System.EventHandler(this.trackBar9_Scroll);
             // 
             // trackBar10
@@ -203,7 +204,7 @@ namespace SoundSampler
             this.trackBar10.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar10.Size = new System.Drawing.Size(45, 164);
             this.trackBar10.TabIndex = 21;
-            this.trackBar10.Value = Properties.Settings.Default.Bar8000;
+            this.trackBar10.Value = global::WASAPI_Arduino.Properties.Settings.Default.Bar8000;
             this.trackBar10.ValueChanged += new System.EventHandler(this.trackBar10_Scroll);
             // 
             // trackBar11
@@ -215,30 +216,8 @@ namespace SoundSampler
             this.trackBar11.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar11.Size = new System.Drawing.Size(45, 164);
             this.trackBar11.TabIndex = 22;
-            this.trackBar11.Value = Properties.Settings.Default.Bar16000;
+            this.trackBar11.Value = global::WASAPI_Arduino.Properties.Settings.Default.Bar16000;
             this.trackBar11.ValueChanged += new System.EventHandler(this.trackBar11_Scroll);
-            // 
-            // trackBar12
-            // 
-            this.trackBar12.Location = new System.Drawing.Point(65, 261);
-            this.trackBar12.Maximum = 999;
-            this.trackBar12.Minimum = 0;
-            this.trackBar12.Name = "trackBar12";
-            this.trackBar12.Size = new System.Drawing.Size(343, 45);
-            this.trackBar12.TabIndex = 35;
-            this.trackBar12.Value = (int)SoundSampler.Properties.Settings.Default.barSmoothing;
-            this.trackBar12.ValueChanged += new System.EventHandler(this.trackBar12_Scroll);
-            // 
-            // trackBar13
-            // 
-            this.trackBar13.Location = new System.Drawing.Point(65, 312);
-            this.trackBar13.Maximum = 100;
-            this.trackBar13.Minimum = 0;
-            this.trackBar13.Name = "trackBar13";
-            this.trackBar13.Size = new System.Drawing.Size(343, 45);
-            this.trackBar13.TabIndex = 36;
-            this.trackBar13.Value = Properties.Settings.Default.height;
-            this.trackBar13.ValueChanged += new System.EventHandler(this.trackBar13_Scroll);
             // 
             // label1
             // 
@@ -340,6 +319,159 @@ namespace SoundSampler
             this.label11.Text = "Preamp";
             this.label11.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(14, 16);
+            this.textBox1.MaxLength = 5;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(40, 20);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = Properties.Settings.Default.textPreamp;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(116, 16);
+            this.textBox2.MaxLength = 5;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(40, 20);
+            this.textBox2.TabIndex = 1;
+            this.textBox2.Text = Properties.Settings.Default.text31;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(167, 16);
+            this.textBox3.MaxLength = 5;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(40, 20);
+            this.textBox3.TabIndex = 2;
+            this.textBox3.Text = Properties.Settings.Default.text62;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(218, 16);
+            this.textBox4.MaxLength = 5;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(40, 20);
+            this.textBox4.TabIndex = 3;
+            this.textBox4.Text = Properties.Settings.Default.text125;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(269, 16);
+            this.textBox5.MaxLength = 5;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(40, 20);
+            this.textBox5.TabIndex = 4;
+            this.textBox5.Text = Properties.Settings.Default.text250;
+            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(320, 16);
+            this.textBox6.MaxLength = 5;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(40, 20);
+            this.textBox6.TabIndex = 5;
+            this.textBox6.Text = Properties.Settings.Default.text500;
+            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(368, 16);
+            this.textBox7.MaxLength = 5;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(40, 20);
+            this.textBox7.TabIndex = 6;
+            this.textBox7.Text = Properties.Settings.Default.text1000;
+            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
+            this.textBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(422, 16);
+            this.textBox8.MaxLength = 5;
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(40, 20);
+            this.textBox8.TabIndex = 7;
+            this.textBox8.Text = Properties.Settings.Default.text2000;
+            this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
+            this.textBox8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(473, 16);
+            this.textBox9.MaxLength = 5;
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(40, 20);
+            this.textBox9.TabIndex = 8;
+            this.textBox9.Text = Properties.Settings.Default.text4000;
+            this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
+            this.textBox9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(524, 16);
+            this.textBox10.MaxLength = 5;
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(40, 20);
+            this.textBox10.TabIndex = 9;
+            this.textBox10.Text = Properties.Settings.Default.text8000;
+            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
+            this.textBox10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(575, 16);
+            this.textBox11.MaxLength = 5;
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(40, 20);
+            this.textBox11.TabIndex = 10;
+            this.textBox11.Text = Properties.Settings.Default.text16000;
+            this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
+            this.textBox11.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = global::WASAPI_Arduino.Properties.Settings.Default.corrector;
+            this.checkBox1.Location = new System.Drawing.Point(516, 261);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(104, 17);
+            this.checkBox1.TabIndex = 34;
+            this.checkBox1.Text = "Enable corrector";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // trackBar12
+            // 
+            this.trackBar12.Location = new System.Drawing.Point(65, 261);
+            this.trackBar12.Maximum = 999;
+            this.trackBar12.Name = "trackBar12";
+            this.trackBar12.Size = new System.Drawing.Size(343, 45);
+            this.trackBar12.TabIndex = 35;
+            this.trackBar12.Value = global::WASAPI_Arduino.Properties.Settings.Default.barSmoothing;
+            this.trackBar12.ValueChanged += new System.EventHandler(this.trackBar12_Scroll);
+            // 
+            // trackBar13
+            // 
+            this.trackBar13.Location = new System.Drawing.Point(65, 312);
+            this.trackBar13.Maximum = 100;
+            this.trackBar13.Name = "trackBar13";
+            this.trackBar13.Size = new System.Drawing.Size(343, 45);
+            this.trackBar13.TabIndex = 36;
+            this.trackBar13.Value = global::WASAPI_Arduino.Properties.Settings.Default.height;
+            this.trackBar13.ValueChanged += new System.EventHandler(this.trackBar13_Scroll);
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -348,7 +480,6 @@ namespace SoundSampler
             this.label12.Size = new System.Drawing.Size(57, 13);
             this.label12.TabIndex = 37;
             this.label12.Text = "Smoothing";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // label13
             // 
@@ -358,127 +489,17 @@ namespace SoundSampler
             this.label13.Size = new System.Drawing.Size(38, 13);
             this.label13.TabIndex = 38;
             this.label13.Text = "Height";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(14, 16);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(40, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = Properties.Settings.Default.preamp.ToString();
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(116, 16);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(40, 20);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Text = Properties.Settings.Default.Hz31.ToString();
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(167, 16);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(40, 20);
-            this.textBox3.TabIndex = 2;
-            this.textBox3.Text = Properties.Settings.Default.Hz62.ToString();
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(218, 16);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(40, 20);
-            this.textBox4.TabIndex = 3;
-            this.textBox4.Text = Properties.Settings.Default.Hz125.ToString();
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(269, 16);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(40, 20);
-            this.textBox5.TabIndex = 4;
-            this.textBox5.Text = Properties.Settings.Default.Hz250.ToString();
-            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
-            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(320, 16);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(40, 20);
-            this.textBox6.TabIndex = 5;
-            this.textBox6.Text = Properties.Settings.Default.Hz500.ToString();
-            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
-            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(368, 16);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(40, 20);
-            this.textBox7.TabIndex = 6;
-            this.textBox7.Text = Properties.Settings.Default.Hz1000.ToString();
-            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
-            this.textBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(422, 16);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(40, 20);
-            this.textBox8.TabIndex = 7;
-            this.textBox8.Text = Properties.Settings.Default.Hz2000.ToString();
-            this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
-            this.textBox8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(473, 16);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(40, 20);
-            this.textBox9.TabIndex = 8;
-            this.textBox9.Text = Properties.Settings.Default.Hz4000.ToString();
-            this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
-            this.textBox9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(524, 16);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(40, 20);
-            this.textBox10.TabIndex = 9;
-            this.textBox10.Text = Properties.Settings.Default.Hz8000.ToString();
-            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
-            this.textBox10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(575, 16);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(40, 20);
-            this.textBox11.TabIndex = 10;
-            this.textBox11.Text = Properties.Settings.Default.Hz16000.ToString();
-            this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
-            this.textBox11.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
             // textBox12
             // 
             this.textBox12.Location = new System.Drawing.Point(422, 262);
+            this.textBox12.MaxLength = 5;
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(40, 20);
             this.textBox12.TabIndex = 39;
-            this.textBox12.Text = Properties.Settings.Default.smoothing.ToString();
-            this.textBox8.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
-            this.textBox8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
+            this.textBox12.Text = Properties.Settings.Default.textSmoothing;
+            this.textBox12.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
+            this.textBox12.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
             // textBox13
             // 
@@ -487,22 +508,8 @@ namespace SoundSampler
             this.textBox13.Size = new System.Drawing.Size(40, 20);
             this.textBox13.TabIndex = 40;
             this.textBox13.Text = Properties.Settings.Default.height.ToString();
-            this.textBox8.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
-            this.textBox8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = Properties.Settings.Default.corrector;
-            this.checkBox1.Location = new System.Drawing.Point(516, 261);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(104, 17);
-            this.checkBox1.TabIndex = 34;
-            this.checkBox1.Text = "Enable corrector";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);            
-           
-            
+            this.textBox13.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
+            this.textBox13.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
             // Form1
             // 
@@ -582,8 +589,6 @@ namespace SoundSampler
                 e.KeyChar = (char)46;
             else if (e.KeyChar == (char)46) // "." sign enabler
                 e.Handled = false;
-            else if (e.KeyChar == (char)13)
-                keyStroke = true;            
             else if (!char.IsDigit(e.KeyChar)) // disable any other input
                 e.Handled = true;
             else
@@ -631,6 +636,6 @@ namespace SoundSampler
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.TextBox textBox13;
         private System.Windows.Forms.CheckBox checkBox1;
-       
+
     }
 }

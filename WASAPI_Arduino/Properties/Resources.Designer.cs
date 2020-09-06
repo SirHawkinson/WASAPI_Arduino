@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SoundSampler.Properties {
+namespace WASAPI_Arduino.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SoundSampler.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SoundSampler.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WASAPI_Arduino.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,9 @@ namespace SoundSampler.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SoundSampler {
+        internal static System.Drawing.Bitmap WASAPI_Arduino {
             get {
-                object obj = ResourceManager.GetObject("SoundSampler", resourceCulture);
+                object obj = ResourceManager.GetObject("WASAPI_Arduino", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace SoundSampler.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SoundSamplerOFF {
+        internal static System.Drawing.Bitmap WASAPI_ArduinoOFF {
             get {
-                object obj = ResourceManager.GetObject("SoundSamplerOFF", resourceCulture);
+                object obj = ResourceManager.GetObject("WASAPI_ArduinoOFF", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace SoundSampler.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SoundSamplerON {
+        internal static System.Drawing.Bitmap WASAPI_ArduinoON {
             get {
-                object obj = ResourceManager.GetObject("SoundSamplerON", resourceCulture);
+                object obj = ResourceManager.GetObject("WASAPI_ArduinoON", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

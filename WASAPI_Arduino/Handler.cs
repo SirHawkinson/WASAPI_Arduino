@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace SoundSampler
+namespace WASAPI_Arduino
 {
     public class Handler
     {
@@ -28,12 +28,12 @@ namespace SoundSampler
         * Handling of raw (massaged) FFT'ed spectrum data. 
         */
 
-        public void SendData(double[] raw, bool bassBased, bool correctorChecked, double[] correctorColumns)
+        public void SendData(double[] raw, bool bassBased)
         {
-            double[] normalized = Normalize(raw,  bassBased, correctorChecked, correctorColumns);
+            double[] normalized = Normalize(raw, bassBased);
             int filtered = Filter(normalized);
-            // Atrocious, but real-time debug only
-            // Console.WriteLine(string.Join(" Handler ", normalized));
+            // Real-time debug only
+            Console.WriteLine(string.Join(" Handler ", normalized));
             SamplerApp samp = new SamplerApp();
             // Send filtered column to COM
             samp.COMSend(filtered);
@@ -51,7 +51,7 @@ namespace SoundSampler
         * Normalize the raw data into values between 0 and the something. The max value is subject to entropy so large spikes don't
         * ruin the cool.
         */
-        private double[] Normalize(double[] raw, bool bass, bool correctorChecked, double[] correctorColumns)
+        private double[] Normalize(double[] raw, bool bass)
         {
 
             int height = Properties.Settings.Default.height;
@@ -62,8 +62,6 @@ namespace SoundSampler
                 Properties.Settings.Default.reload = false;
             }
 
-                // Preamplification value rests in the 11th argument of correctorColumns array.
-                double preamp = correctorColumns[10];
 
             // Apply 3-column normalization
             if (bass == true)
@@ -74,24 +72,21 @@ namespace SoundSampler
                 // Use maxSeenEver to normalize the range into 0-Height
                 maxSeenEver = Math.Max(raw.Max(), maxSeenEver);
 
-                if (correctorChecked)
-                {
                     for (int i = 0; i < bassBasedColumns; i++)
                     {
-                        normalized[i] = raw[i] / maxSeenEver * height + correctorColumns[i] + preamp;
+                        normalized[i] = raw[i] / maxSeenEver * height;
                         if (normalized[i] > height)
                             normalized[i] = height;
                         else if(normalized[i] <0)
                             normalized[i] = 0;
                     }
-                }
-                else
-                {
+                
+                
                     for (int i = 0; i < bassBasedColumns; i++)
                     {
                         normalized[i] = raw[i] / maxSeenEver * height;
                     }
-                }
+                
             maxSeenEver *= entropy;
                 
             return normalized;
@@ -105,25 +100,13 @@ namespace SoundSampler
               // Use maxSeenEver to normalize the range into 0-Height
                     maxSeenEver = Math.Max(raw.Max(), maxSeenEver);
 
-                    if (correctorChecked)
-                    {
-                        for (int i = 0; i < raw.Length; i++)
-                        {
-                            normalized[i] = raw[i] / maxSeenEver * height + correctorColumns[i] + preamp;
-                        if (normalized[i] > height)
-                            normalized[i] = height;
-                        else if (normalized[i] < 0)
-                            normalized[i] = 0;
-                    }
-                    }
                     // Check for corrector checkbox checked status and apply corrector if true.
-                    else
-                    {
+                    
                         for (int i = 0; i < raw.Length; i++)
                         {
                             normalized[i] = raw[i] / maxSeenEver * height;
                         }
-                    }
+               
             maxSeenEver *= entropy;
             return normalized;
                }

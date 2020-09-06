@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace SoundSampler
+namespace WASAPI_Arduino
 {
     static class Program
 
@@ -13,7 +13,6 @@ namespace SoundSampler
             SamplerAppContext app = new SamplerAppContext();
             Application.ApplicationExit += app.OnApplicationExit;
             Application.Run(app);
-            //-0,0098x2+0,348x correctors
         }   
     }
 }

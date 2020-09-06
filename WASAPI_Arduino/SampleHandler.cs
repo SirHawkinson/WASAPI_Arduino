@@ -1,9 +1,8 @@
 ﻿using CSCore.DSP;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace SoundSampler
+namespace WASAPI_Arduino
 {
 
     public class SampleHandler
@@ -16,9 +15,11 @@ namespace SoundSampler
         const int fftSizeInt = (int)fftSize;
 
         
-
-        // Drop the index to 0 if below this threshold. Helps prevent lingering color after sound
-        // has stopped.
+        /*
+        * Drop the index to 0 if below this threshold. Helps prevent lingering color after sound
+        * has stopped. Value in amplitude (10^(dB/20) as a reminder), 0.001 means any signal below
+        * -60dB (30dB when related to 90dB output) will be ignored.
+        */
         const float minThreshold = 0.001f;
 
         /* 
@@ -40,6 +41,7 @@ namespace SoundSampler
 
         // Previous-sample spectrum data, used for smoothing out the output.
         double[] prevSpectrumValues = new double[columns];
+        float[] firstData = new float[10];
 
         public SampleHandler()
         {
@@ -64,8 +66,10 @@ namespace SoundSampler
         /*
          Get the current array of sample data by running the FFT and massaging the output. 
         */
-        public double[] GetSpectrumValues(double smoothing)
+        public double[] GetSpectrumValues(double smoothing, double[] correctorColumns)
         {
+            double preamp = correctorColumns[10];
+
             // Check for no data coming through FFT and send null if true
             if (!fftProvider.IsNewDataAvailable)
             {
@@ -109,17 +113,36 @@ namespace SoundSampler
                     if (peak > 100) peak = 100;
                     if (peak < 0) peak = 0;
                     _spectrumData.Add(peak);
+
+                    foreach (float data in _spectrumData)
+                        firstData = _spectrumData.ToArray();
+
+                    if (Properties.Settings.Default.corrector)
+                    /*
+                    * Do not apply the corrector when output is less than -80dB, will prevent constant
+                    * strip light up. The next part is rather stupid - convert output and corrector to dB,
+                    * add them then convert back to amplitude. I'm too bad at math to do it in a better way.
+                    */
+                    if (_spectrumData[spectrumColumn] > 0.0001)
+                    {
+                            _spectrumData[spectrumColumn] = (float)(20 * Math.Log(_spectrumData[spectrumColumn], 10));
+                            _spectrumData[spectrumColumn] = _spectrumData[spectrumColumn]+ (float)correctorColumns[spectrumColumn] + (float)preamp;
+                            _spectrumData[spectrumColumn] = (float)(Math.Pow(10, (_spectrumData[spectrumColumn] / 20)));
+                    }
                     
-                    // Output is in amplitude, using a dB level for our purpose generates so little dB difference
-                    // between beats it's mostly a flicker than brightness change. I'm including a dB method as a 
-                    // comment, if you want to use it, there's no practical reason to do so.
+                    /*
+                    * Output is in amplitude, using a dB level for our purpose generates so little dB difference
+                    * between beats it's not even introducing a flicker. Also, values are so high, you can't even 
+                    * use a positive corrector, else you're stuck with constant 100s. I'm including a dB method 
+                    * as a comment, if you want to use it, but there's no practical reason to do so.
+                    */
                     for (int i = 0; i < _spectrumData.ToArray().Length; i++)
                     {
 
                         try
                         {
-                            // double dBscaled = (20*Math.Pow(_spectrumData[i]+90);
-                            // double Smoothed = prevSpectrumValues[i] * smoothing + dBscaled * (1 - smoothing);
+                             // double dBscaled = (20*Math.Log(_spectrumData[i],10)+90);
+                             // double Smoothed = prevSpectrumValues[i] * smoothing + dBscaled * (1 - smoothing);
                             double Smoothed = prevSpectrumValues[i] * smoothing + _spectrumData[i] * (1 - smoothing);
                             spectrumValues[i] = Smoothed < minThreshold ? 0 : Smoothed;
                         }
@@ -128,8 +151,6 @@ namespace SoundSampler
                         }
                     }
                 }
-
-
                 // Clear the _spectrumData from any previous results for new FFT data.
                 _spectrumData.Clear();
                 return prevSpectrumValues = spectrumValues;
@@ -137,3 +158,5 @@ namespace SoundSampler
         }
     }
 }
+
+

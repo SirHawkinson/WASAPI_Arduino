@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SoundSampler.Properties {
+namespace WASAPI_Arduino.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -56,15 +56,6 @@ namespace SoundSampler.Properties {
             }
             set {
                 this["UpdateSpeed"] = value;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("115200")]
-        public int baud {
-            get {
-                return ((int)(this["baud"]));
             }
         }
         
@@ -437,6 +428,150 @@ namespace SoundSampler.Properties {
             }
             set {
                 this["reload"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string text31 {
+            get {
+                return ((string)(this["text31"]));
+            }
+            set {
+                this["text31"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string text62 {
+            get {
+                return ((string)(this["text62"]));
+            }
+            set {
+                this["text62"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string text125 {
+            get {
+                return ((string)(this["text125"]));
+            }
+            set {
+                this["text125"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string text250 {
+            get {
+                return ((string)(this["text250"]));
+            }
+            set {
+                this["text250"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string text500 {
+            get {
+                return ((string)(this["text500"]));
+            }
+            set {
+                this["text500"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string text1000 {
+            get {
+                return ((string)(this["text1000"]));
+            }
+            set {
+                this["text1000"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string text2000 {
+            get {
+                return ((string)(this["text2000"]));
+            }
+            set {
+                this["text2000"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string text4000 {
+            get {
+                return ((string)(this["text4000"]));
+            }
+            set {
+                this["text4000"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string text8000 {
+            get {
+                return ((string)(this["text8000"]));
+            }
+            set {
+                this["text8000"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string text16000 {
+            get {
+                return ((string)(this["text16000"]));
+            }
+            set {
+                this["text16000"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string textPreamp {
+            get {
+                return ((string)(this["textPreamp"]));
+            }
+            set {
+                this["textPreamp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.85")]
+        public string textSmoothing {
+            get {
+                return ((string)(this["textSmoothing"]));
+            }
+            set {
+                this["textSmoothing"] = value;
             }
         }
     }

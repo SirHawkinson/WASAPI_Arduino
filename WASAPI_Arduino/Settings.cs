@@ -1,4 +1,4 @@
-﻿namespace SoundSampler.Properties {
+﻿namespace WASAPI_Arduino.Properties {
     
     
     // This class allows you to handle specific events on the settings class:

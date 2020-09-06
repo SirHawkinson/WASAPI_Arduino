@@ -1,4 +1,4 @@
-﻿using SoundSampler.Properties;
+﻿using WASAPI_Arduino.Properties;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -6,7 +6,7 @@ using System.IO.Ports;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SoundSampler
+namespace WASAPI_Arduino
 {
 
     /*
@@ -16,6 +16,8 @@ namespace SoundSampler
      */
     public class SamplerAppContext : ApplicationContext
     {
+
+        Form1 CorrectorForm = new Form1();
 
         // Refresh rate options.
         public const double Slow_MS = 1000 / 30.0;
@@ -69,7 +71,7 @@ namespace SoundSampler
                     new MenuItem("Octaves", (s,e) => AudioRange_Handling(s,false,1)),
                     }),
                new MenuItem("Corrector", Corrector),
-                new MenuItem("Exit SoundSampler", OnApplicationExit)
+                new MenuItem("Exit WASAPI Arduino", OnApplicationExit)
             }); ;
 
             // Default options precheck.
@@ -77,8 +79,8 @@ namespace SoundSampler
             systrayIcon.ContextMenu.MenuItems[1].MenuItems[updateSpeedIndex].Checked = true;
             systrayIcon.ContextMenu.MenuItems[2].MenuItems[audioHandlingIndex].Checked = true;
             systrayIcon.MouseClick += SystrayIcon_Click;
-            systrayIcon.Icon = Icon.FromHandle(Resources.SoundSamplerOFF.GetHicon());
-            systrayIcon.Text = "SoundSampler";
+            systrayIcon.Icon = Icon.FromHandle(Resources.WASAPI_ArduinoOFF.GetHicon());
+            systrayIcon.Text = "WASAPI Arduino";
             systrayIcon.Visible = true;
         }
 
@@ -96,8 +98,7 @@ namespace SoundSampler
 
         private void Corrector (object sender, EventArgs e)
         {
-            var myForm = new Form1();
-            myForm.Show();
+            CorrectorForm.Show();
         }
 
         // Get a list of serial port names, failsafe in case it will not detect any devices.
@@ -106,7 +107,7 @@ namespace SoundSampler
             string[] ports = SerialPort.GetPortNames();
             if (ports.Length == 0)
             {
-                MessageBox.Show("No connected USB device detected. SoundSampler will shutdown.",
+                MessageBox.Show("No connected USB device detected. WASAPI Arduino will shutdown.",
                                 "No available ports detected.", MessageBoxButtons.OK);
                 return null;                
             }
@@ -146,9 +147,9 @@ namespace SoundSampler
 
                     // Icon switching
                     if (enabled == true)
-                        systrayIcon.Icon = Icon.FromHandle(Resources.SoundSamplerON.GetHicon());
+                        systrayIcon.Icon = Icon.FromHandle(Resources.WASAPI_ArduinoON.GetHicon());
                     else
-                        systrayIcon.Icon = Icon.FromHandle(Resources.SoundSamplerOFF.GetHicon());
+                        systrayIcon.Icon = Icon.FromHandle(Resources.WASAPI_ArduinoOFF.GetHicon());
 
                     SamplerApp.SetEnabled(enabled);
                 }

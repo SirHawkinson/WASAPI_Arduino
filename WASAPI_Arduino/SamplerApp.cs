@@ -5,7 +5,7 @@ using System;
 using System.Timers;
 using System.IO.Ports;
 
-namespace SoundSampler
+namespace WASAPI_Arduino
 {
     /*
      Audio capture, USB handling, settings and variables initializator. 
@@ -33,10 +33,12 @@ namespace SoundSampler
         public double Hz8000Column = Properties.Settings.Default.Hz8000;
         public double Hz16000Column = Properties.Settings.Default.Hz16000;
         public double preamp = Properties.Settings.Default.preamp;
-        public double[] correctors = new double[10];
+        public double[] correctors = new double[11];
+        public double[] zero = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 };
+        public double[] valuesToSend = new double[11];
 
         /* The weight given to the previous sample for time-based smoothing. High value works great when 
-         * sending it to the LED strip ewhen the software is set to a high refresh rate, making the 
+         * sending it to the LED strip when the software is set to a high refresh rate, making the 
          * transition between values much milder, lower values increase accuracy of sampling.
          * Setting it too low on a high refreshed stripe introduces VERY annoying flicker. 
          */
@@ -67,16 +69,14 @@ namespace SoundSampler
 
             // Init the output modifiers 
             
-
             this.correctors = new double[11] {Hz31Column,Hz62Column,Hz125Column,Hz250Column,Hz500Column,
             Hz1000Column,Hz2000Column,Hz4000Column,Hz8000Column,Hz16000Column,preamp};
             this.smoothing = Properties.Settings.Default.smoothing;
-
-            this.Port = Properties.Settings.Default.Port;
-            this.baud = Properties.Settings.Default.baud;
             this.bassBased = Properties.Settings.Default.bassBased;
 
-            
+            // Init the COM port and USB baud rate.
+            this.Port = Properties.Settings.Default.Port;
+            this.baud = 115200;
 
             // Create a handler
             Handler = new Handler();
@@ -174,15 +174,22 @@ namespace SoundSampler
                 double Hz8000Column = Properties.Settings.Default.Hz8000;
                 double Hz16000Column = Properties.Settings.Default.Hz16000;
                 double preamp = Properties.Settings.Default.preamp;
+                this.preamp = Properties.Settings.Default.preamp;
+                this.smoothing = smoothing;
                 this.correctors = new double[11] {Hz31Column,Hz62Column,Hz125Column,Hz250Column,Hz500Column,
             Hz1000Column,Hz2000Column,Hz4000Column,Hz8000Column,Hz16000Column,preamp};
                 Properties.Settings.Default.reload = false;
             }
             // Get the FFT results and send to Handler with method as a results handling variable.
-            Console.WriteLine("smoothing " + smoothing + string.Join(" correctors ", correctors));
-            double[] values = SampleHandler.GetSpectrumValues(smoothing);
+
+
+            if (!Properties.Settings.Default.corrector)
+                valuesToSend = zero;
+            else
+                valuesToSend = correctors;
+                double[] values = SampleHandler.GetSpectrumValues(smoothing, valuesToSend);
            
-                Handler.SendData(values, bassBased, Properties.Settings.Default.corrector, correctors);
+                Handler.SendData(values, bassBased);
         }
 
         
