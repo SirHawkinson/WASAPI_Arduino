@@ -1,4 +1,4 @@
-Thank you for using my software! If you like my program, please consider a small donation to my PayPal: polishsirhawk@gmail.com.
+Thank you for using my software! If you like my program, please consider a small donation to my PayPal: https://paypal.me/SirHawkinson?locale.x=pl_PL.
 
 This file contains basic control for the program, including handling Arduino code. You require .NET Framework 4.7.2 to be able to use my program
 and FastLED library (https://github.com/FastLED/FastLED) to upload Arduino code to your microcontroler.
