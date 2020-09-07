@@ -138,7 +138,7 @@ namespace WASAPI_Arduino
             {
 
                 // No device selected handling
-                if (selectedPort == null)
+                if (string.IsNullOrEmpty(selectedPort))
                 {
                     MessageBox.Show("Please select a port.",
                               "No port selected.", MessageBoxButtons.OK);

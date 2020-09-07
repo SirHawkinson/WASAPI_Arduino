@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Port" Type="System.String" Scope="User">
-      <Value Profile="(Default)">null</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="bassBased" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

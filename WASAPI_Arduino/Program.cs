@@ -7,7 +7,6 @@ namespace WASAPI_Arduino
     {
         static void Main()
         {
-            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             SamplerAppContext app = new SamplerAppContext();

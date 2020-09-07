@@ -89,6 +89,7 @@ namespace WASAPI_Arduino
         {
             if (enabled)
             {
+
                     serialPort = new SerialPort(Port, baud);
                     serialPort.ReadTimeout = 250;
                     serialPort.WriteTimeout = 250;

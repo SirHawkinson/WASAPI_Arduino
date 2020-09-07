@@ -326,7 +326,7 @@ namespace WASAPI_Arduino
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(40, 20);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = Properties.Settings.Default.textPreamp;
+            this.textBox1.Text = global::WASAPI_Arduino.Properties.Settings.Default.textPreamp;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
@@ -337,7 +337,7 @@ namespace WASAPI_Arduino
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(40, 20);
             this.textBox2.TabIndex = 1;
-            this.textBox2.Text = Properties.Settings.Default.text31;
+            this.textBox2.Text = global::WASAPI_Arduino.Properties.Settings.Default.text31;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
@@ -348,7 +348,7 @@ namespace WASAPI_Arduino
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(40, 20);
             this.textBox3.TabIndex = 2;
-            this.textBox3.Text = Properties.Settings.Default.text62;
+            this.textBox3.Text = global::WASAPI_Arduino.Properties.Settings.Default.text62;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
@@ -359,7 +359,7 @@ namespace WASAPI_Arduino
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(40, 20);
             this.textBox4.TabIndex = 3;
-            this.textBox4.Text = Properties.Settings.Default.text125;
+            this.textBox4.Text = global::WASAPI_Arduino.Properties.Settings.Default.text125;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
@@ -370,7 +370,7 @@ namespace WASAPI_Arduino
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(40, 20);
             this.textBox5.TabIndex = 4;
-            this.textBox5.Text = Properties.Settings.Default.text250;
+            this.textBox5.Text = global::WASAPI_Arduino.Properties.Settings.Default.text250;
             this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
@@ -381,7 +381,7 @@ namespace WASAPI_Arduino
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(40, 20);
             this.textBox6.TabIndex = 5;
-            this.textBox6.Text = Properties.Settings.Default.text500;
+            this.textBox6.Text = global::WASAPI_Arduino.Properties.Settings.Default.text500;
             this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
@@ -392,7 +392,7 @@ namespace WASAPI_Arduino
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(40, 20);
             this.textBox7.TabIndex = 6;
-            this.textBox7.Text = Properties.Settings.Default.text1000;
+            this.textBox7.Text = global::WASAPI_Arduino.Properties.Settings.Default.text1000;
             this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             this.textBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
@@ -403,7 +403,7 @@ namespace WASAPI_Arduino
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(40, 20);
             this.textBox8.TabIndex = 7;
-            this.textBox8.Text = Properties.Settings.Default.text2000;
+            this.textBox8.Text = global::WASAPI_Arduino.Properties.Settings.Default.text2000;
             this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             this.textBox8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
@@ -414,7 +414,7 @@ namespace WASAPI_Arduino
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(40, 20);
             this.textBox9.TabIndex = 8;
-            this.textBox9.Text = Properties.Settings.Default.text4000;
+            this.textBox9.Text = global::WASAPI_Arduino.Properties.Settings.Default.text4000;
             this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             this.textBox9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
@@ -425,7 +425,7 @@ namespace WASAPI_Arduino
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(40, 20);
             this.textBox10.TabIndex = 9;
-            this.textBox10.Text = Properties.Settings.Default.text8000;
+            this.textBox10.Text = global::WASAPI_Arduino.Properties.Settings.Default.text8000;
             this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
             this.textBox10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
@@ -436,7 +436,7 @@ namespace WASAPI_Arduino
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(40, 20);
             this.textBox11.TabIndex = 10;
-            this.textBox11.Text = Properties.Settings.Default.text16000;
+            this.textBox11.Text = global::WASAPI_Arduino.Properties.Settings.Default.text16000;
             this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             this.textBox11.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
@@ -497,7 +497,7 @@ namespace WASAPI_Arduino
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(40, 20);
             this.textBox12.TabIndex = 39;
-            this.textBox12.Text = Properties.Settings.Default.textSmoothing;
+            this.textBox12.Text = global::WASAPI_Arduino.Properties.Settings.Default.textSmoothing;
             this.textBox12.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
             this.textBox12.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
@@ -507,7 +507,7 @@ namespace WASAPI_Arduino
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(40, 20);
             this.textBox13.TabIndex = 40;
-            this.textBox13.Text = Properties.Settings.Default.height.ToString();
+            this.textBox13.Text = "100";
             this.textBox13.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
             this.textBox13.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             // 
@@ -556,6 +556,8 @@ namespace WASAPI_Arduino
             this.Controls.Add(this.trackBar3);
             this.Controls.Add(this.trackBar2);
             this.Controls.Add(this.trackBar1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form1";
