@@ -17,8 +17,6 @@ namespace WASAPI_Arduino
     public class SamplerAppContext : ApplicationContext
     {
 
-        Form1 CorrectorForm = new Form1();
-
         // Refresh rate options.
         public const double Slow_MS = 1000 / 30.0;
         public const double Med_MS = 1000 / 60.0;
@@ -34,11 +32,12 @@ namespace WASAPI_Arduino
         // Set the program as disabled, COMPort as null by default and get settings indexes.
         private Boolean enabled = false;
         public Boolean correctorOpen = false;
+        public Boolean formOpen = false;
         private string selectedPort;
         private int portIndex = Settings.Default.portIndex;
         private int updateSpeedIndex = Settings.Default.updateSpeedIndex;
         private int audioHandlingIndex = Settings.Default.audioHandlingIndex;
-
+        
         /*
          * Set up the application. Configures the main app handler, creates and initializes the
          * systray icon and its context menu, and makes the icon visible.
@@ -95,10 +94,13 @@ namespace WASAPI_Arduino
             Application.Exit();
 
         }
-
-        private void Corrector (object sender, EventArgs e)
+        
+        private void Corrector(object sender, EventArgs e)
         {
-            CorrectorForm.Show();
+            
+                Form1 CorrectorForm = new Form1();
+                CorrectorForm.Show();
+            
         }
 
         // Get a list of serial port names, failsafe in case it will not detect any devices.

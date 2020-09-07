@@ -574,5 +574,17 @@ namespace WASAPI_Arduino.Properties {
                 this["textSmoothing"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool formClosed {
+            get {
+                return ((bool)(this["formClosed"]));
+            }
+            set {
+                this["formClosed"] = value;
+            }
+        }
     }
 }

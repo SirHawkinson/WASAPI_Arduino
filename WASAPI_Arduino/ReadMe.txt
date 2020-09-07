@@ -22,7 +22,7 @@ WASAPI Arduino
 - Corrector opens a equalizer window, use it to counter your actual audio equalizer so WASAPI Arduino will function like there was no interference in output signal. Doing so will also prevent abnormalities like not detecting
 a signal, if you have an aggresive preset, keep in mind you need to input a mirrored data, so if you boosted your 31Hz column by 3dB you need to input a -3 in the corrector window. Smoothing bar is the weight given to the previous sample 
 for time-based smoothing, for smoother transitions between values. High value works great when sending it to the LED strip when the software is set to a high refresh rate, making the transition between values much milder, lower values 
-increase accuracy of sampling. Setting it too low introduces VERY annoying flicker;
+increase accuracy of sampling. Setting it too low introduces VERY annoying flicker; The faster the refresh rate, the higher this value should be set.
 - Exit closes the application and saves all changes made.
 
 Before uploading the code to your Arduino:
