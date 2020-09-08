@@ -6,6 +6,9 @@ and FastLED library (https://github.com/FastLED/FastLED) to upload Arduino code 
 WASAPI Arduino is an ultra light program that uses WASAPI to capture the sound directly from operating system, this bypasses the need for any extra sound source or mixing. Through CSCore library the sound data is processed 
 with Fast Fourier Transform (FFT), sorted into 10 columns representing regular 10 band frequency bars. Afterwards, the highest column is being selected and sent through selected USB port. It does nothing else, which was the principle while making WASAPI Arduino, so there's no influence in Arduino behaviour, only data bits are sent. Any change you make in the current session is saved and carried over to the next one upon closing the application.
 
+Showcase of functionality:
+https://www.youtube.com/watch?v=IMfAHm1GHIs
+
 How to use:
 
 Download the release version you're interested in, put the 3 files (CSCore.dll, CSCore.xml [not necessary], WASAPI Arduino.exe) in one folder and double click on the executable.
