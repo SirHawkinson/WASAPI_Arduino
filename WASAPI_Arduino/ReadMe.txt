@@ -1,7 +1,6 @@
 Thank you for using my software! If you like my program, please consider a small donation to my PayPal: https://paypal.me/SirHawkinson?locale.x=pl_PL.
 
-This file contains basic control for the program, including handling Arduino code. You require .NET Framework 4.7.2 to be able to use my program
-and FastLED library (https://github.com/FastLED/FastLED) to upload Arduino code to your microcontroler.
+This file contains basic control for the program, including handling Arduino code. Project was drafted on a .NET Framework 4.7.2 to be able to use my program but it seems to work with generic 4.0 Framework just well. FastLED library (https://github.com/FastLED/FastLED) is necessary to upload Arduino code to your microcontroler.
 
 WASAPI Arduino is an ultra light program that uses WASAPI to capture the sound directly from operating system, this bypasses the need for any extra sound source or mixing. Through CSCore library the sound data is processed 
 with Fast Fourier Transform (FFT), sorted into 10 columns representing regular 10 band frequency bars. Afterwards, the highest column is being selected and sent through selected USB port. It does nothing else, which was the principle while making WASAPI Arduino, so there's no influence in Arduino behaviour, only data bits are sent. Any change you make in the current session is saved and carried over to the next one upon closing the application.
