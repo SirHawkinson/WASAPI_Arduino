@@ -20,7 +20,7 @@ namespace WASAPI_Arduino
         * has stopped. Value in amplitude (10^(dB/20) as a reminder), 0.001 means any signal below
         * -60dB (30dB when related to 90dB output) will be ignored.
         */
-        const float minThreshold = 0.001f;
+        const float minThreshold = 0.00001f;
 
         /* 
          * The number of index points to take from the raw FFT data. Number of columns corresponds
