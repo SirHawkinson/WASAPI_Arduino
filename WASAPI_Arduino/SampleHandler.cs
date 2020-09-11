@@ -119,11 +119,11 @@ namespace WASAPI_Arduino
 
                     if (Properties.Settings.Default.corrector)
                     /*
-                    * Do not apply the corrector when output is less than -80dB, will prevent constant
+                    * Do not apply the corrector when output is less than -100dB, will prevent constant
                     * strip light up. The next part is rather stupid - convert output and corrector to dB,
                     * add them then convert back to amplitude. I'm too bad at math to do it in a better way.
                     */
-                    if (_spectrumData[spectrumColumn] > 0.0001)
+                    if (_spectrumData[spectrumColumn] > 0.00001)
                     {
                             _spectrumData[spectrumColumn] = (float)(20 * Math.Log(_spectrumData[spectrumColumn], 10));
                             _spectrumData[spectrumColumn] = _spectrumData[spectrumColumn]+ (float)correctorColumns[spectrumColumn] + (float)preamp;
@@ -141,8 +141,8 @@ namespace WASAPI_Arduino
 
                         try
                         {
-                             // double dBscaled = (20*Math.Log(_spectrumData[i],10)+90);
-                             // double Smoothed = prevSpectrumValues[i] * smoothing + dBscaled * (1 - smoothing);
+                           // double dBscaled = (20*Math.Log(_spectrumData[i],10)+90);
+                           // double Smoothed = prevSpectrumValues[i] * smoothing + dBscaled * (1 - smoothing);
                             double Smoothed = prevSpectrumValues[i] * smoothing + _spectrumData[i] * (1 - smoothing);
                             spectrumValues[i] = Smoothed < minThreshold ? 0 : Smoothed;
                         }

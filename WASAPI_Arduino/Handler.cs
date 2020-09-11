@@ -30,6 +30,7 @@ namespace WASAPI_Arduino
 
         public void SendData(double[] raw, bool bassBased)
         {
+            
             double[] normalized = Normalize(raw, bassBased);
             int filtered = Filter(normalized);
             // Real-time debug only

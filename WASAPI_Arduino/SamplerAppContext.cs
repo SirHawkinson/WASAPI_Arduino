@@ -24,9 +24,10 @@ namespace WASAPI_Arduino
         public const double Veryfast_MS = 1000 / 400.0;
         public const double Exp_MS = 1000 / 1000.0;
         public const double yolo_MS = 1000 / 9999.0;
+        public const double doubleYolo_MS = 1000 / 20000.0;
 
         // The systray icon and main app control.
-            private NotifyIcon systrayIcon;
+        private NotifyIcon systrayIcon;
             private SamplerApp SamplerApp;
 
         // Set the program as disabled, COMPort as null by default and get settings indexes.
@@ -60,9 +61,10 @@ namespace WASAPI_Arduino
                     new MenuItem("Slow (30Hz)", (s, e) => UpdateSpeed_Click(s, Slow_MS, 0)),
                     new MenuItem("Medium (60Hz)", (s, e) => UpdateSpeed_Click(s, Med_MS, 1)),
                     new MenuItem("Fast (120Hz)", (s, e) => UpdateSpeed_Click(s, Fast_MS, 2)),
-                    new MenuItem("Full (400Hz)", (s, e) => UpdateSpeed_Click(s, Veryfast_MS, 3)),
-                    new MenuItem("Exp (1000Hz)", (s, e) => UpdateSpeed_Click(s, Exp_MS, 4)),
-                    new MenuItem("yolo (9999Hz)", (s,e) => UpdateSpeed_Click(s, yolo_MS,5)),
+                    new MenuItem("Veryfast (400Hz)", (s, e) => UpdateSpeed_Click(s, Veryfast_MS, 3)),
+                    new MenuItem("Fastest LED strip (1000Hz)", (s, e) => UpdateSpeed_Click(s, Exp_MS, 4)),
+                    new MenuItem("f a s t e r (9999Hz)", (s,e) => UpdateSpeed_Click(s, yolo_MS,5)),
+                    new MenuItem("Still not Nyquist (20000Hz)", (s,e) => UpdateSpeed_Click(s, doubleYolo_MS,5)),
                 }),
                 new MenuItem("Sound columns", new MenuItem[]{
                     // No fking clue if that's a bad idea to implement a boolean here, seems to work fine.
