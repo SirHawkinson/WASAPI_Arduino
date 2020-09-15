@@ -144,7 +144,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Colour" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">White</Value>
     </Setting>
   </Settings>
 </SettingsFile>
