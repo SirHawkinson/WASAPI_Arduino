@@ -4,6 +4,8 @@ using CSCore.Streams;
 using System;
 using System.Timers;
 using System.IO.Ports;
+using System.Threading;
+using System.Drawing;
 
 namespace WASAPI_Arduino
 {
@@ -19,7 +21,7 @@ namespace WASAPI_Arduino
         private int baud;
 
         // Ticker that triggers audio re-rendering. User-controllable via the systray menu
-        private Timer ticker;
+        private System.Timers.Timer ticker;
 
         // Corrector columns that are applied when the corrector box is checked.
         public double Hz31Column = Properties.Settings.Default.Hz31;
@@ -34,8 +36,11 @@ namespace WASAPI_Arduino
         public double Hz16000Column = Properties.Settings.Default.Hz16000;
         public double preamp = Properties.Settings.Default.preamp;
         public double[] correctors = new double[11];
-        public double[] zero = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 };
+        public double[] zero = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         public double[] valuesToSend = new double[11];
+
+        // Interrupt byte to send to Arduino for setting colours 
+        byte[] interrupt = BitConverter.GetBytes(101); 
 
         /* The weight given to the previous sample for time-based smoothing. High value works great when 
          * sending it to the LED strip when the software is set to a high refresh rate, making the 
@@ -64,7 +69,7 @@ namespace WASAPI_Arduino
         public SamplerApp()
         {
             // Init the timer
-            ticker = new Timer(Properties.Settings.Default.UpdateSpeed);
+            ticker = new System.Timers.Timer(Properties.Settings.Default.UpdateSpeed);
             ticker.Elapsed += Tick;
 
             // Init the output modifiers 
@@ -77,6 +82,7 @@ namespace WASAPI_Arduino
             // Init the COM port and USB baud rate.
             this.Port = Properties.Settings.Default.Port;
             this.baud = 115200;
+
 
             // Create a handler
             Handler = new Handler();
@@ -91,11 +97,30 @@ namespace WASAPI_Arduino
             {
 
                     serialPort = new SerialPort(Port, baud);
-                    serialPort.ReadTimeout = 250;
-                    serialPort.WriteTimeout = 250;
-                    serialPort.Open();
+                    // serialPort.ReadTimeout = 250;
+                    // serialPort.WriteTimeout = 250;
+                try
+                {
+                    if (serialPort.IsOpen == false)
+                    {
+                        serialPort.Open();
+                    }
+
+                    // Apply saved colour when starting capture
+                    Color colour = Properties.Settings.Default.Colour;
+                    byte R = colour.R;
+                    byte G = colour.G;
+                    byte B = colour.B;
+                    byte[] RGB = { R, G, B };
+                    COMSetColour(RGB);
                     StartCapture();
                     ticker.Start();
+                    
+                }
+                catch(Exception)
+                    {
+
+                }
             }
             else
             {
@@ -118,8 +143,24 @@ namespace WASAPI_Arduino
         {
             byte[] b = BitConverter.GetBytes(data);
             serialPort.Write(b, 0, 1);
+            
         }
-
+               
+        public void COMSetColour(byte[] data)
+        {
+            
+            if (serialPort.IsOpen == false)
+            {
+                serialPort.Open();
+            }
+            ticker.Stop();
+            Thread.Sleep(10); // Use if there are issues with sending the colour information
+            serialPort.Write(interrupt, 0, 1);
+            serialPort.Write(data, 0, 3);
+            Thread.Sleep(10);
+            ticker.Start();
+        }
+        
         /*
          * Update the timer tick speed, which updates the FFT and sound rendering speeds(?).
          */

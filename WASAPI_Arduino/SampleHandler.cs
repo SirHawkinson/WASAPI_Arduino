@@ -109,7 +109,8 @@ namespace WASAPI_Arduino
                     }
                     peak = (float)max;
 
-                    // Peak exceeding 0-100 handling. Not that it happens;
+                    // Peak exceeding 0-100 handling. Not that anything close to 100 happens since it's an 
+                    // amplitude.
                     if (peak > 100) peak = 100;
                     if (peak < 0) peak = 0;
                     _spectrumData.Add(peak);
@@ -121,7 +122,8 @@ namespace WASAPI_Arduino
                     /*
                     * Do not apply the corrector when output is less than -100dB, will prevent constant
                     * strip light up. The next part is rather stupid - convert output and corrector to dB,
-                    * add them then convert back to amplitude. I'm too bad at math to do it in a better way.
+                    * add them then convert back to amplitude. I'm too bad at math to do it in a better way,
+                    * converting dB in corrector to amplitude then adding logarithms produce wrong values.
                     */
                     if (_spectrumData[spectrumColumn] > 0.00001)
                     {
@@ -135,14 +137,20 @@ namespace WASAPI_Arduino
                     * between beats it's not even introducing a flicker. Also, values are so high, you can't even 
                     * use a positive corrector, else you're stuck with constant 100s. I'm including a dB method 
                     * as a comment, if you want to use it, but there's no practical reason to do so.
+                    * On a side note, you'd also want to edit (or delete, if you wanted to)the Normalize function 
+                    * in Handler class and make the height multiplier of 0.00 to 1.00, so it'd steer the resulting 
+                    * dB as a percentage value. You'll also want to apply a filter so it'd bring values over 100 
+                    * back to 100. An additional preapplied A corrector seems to be needed too.
                     */
                     for (int i = 0; i < _spectrumData.ToArray().Length; i++)
                     {
 
                         try
                         {
-                           // double dBscaled = (20*Math.Log(_spectrumData[i],10)+90);
-                           // double Smoothed = prevSpectrumValues[i] * smoothing + dBscaled * (1 - smoothing);
+                            // +90 is to change a reference value to a 0dB point.
+                            // double dBscaled = (20*Math.Log(_spectrumData[i],10)+90); 
+
+                            // double Smoothed = prevSpectrumValues[i] * smoothing + dBscaled * (1 - smoothing);
                             double Smoothed = prevSpectrumValues[i] * smoothing + _spectrumData[i] * (1 - smoothing);
                             spectrumValues[i] = Smoothed < minThreshold ? 0 : Smoothed;
                         }

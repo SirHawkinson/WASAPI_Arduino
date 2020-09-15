@@ -586,5 +586,16 @@ namespace WASAPI_Arduino.Properties {
                 this["formClosed"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color Colour {
+            get {
+                return ((global::System.Drawing.Color)(this["Colour"]));
+            }
+            set {
+                this["Colour"] = value;
+            }
+        }
     }
 }

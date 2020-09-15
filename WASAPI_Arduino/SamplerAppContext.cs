@@ -21,15 +21,14 @@ namespace WASAPI_Arduino
         public const double Slow_MS = 1000 / 30.0;
         public const double Med_MS = 1000 / 60.0;
         public const double Fast_MS = 1000 / 120.0;
-        public const double Veryfast_MS = 1000 / 400.0;
-        public const double Exp_MS = 1000 / 1000.0;
-        public const double yolo_MS = 1000 / 9999.0;
-        public const double doubleYolo_MS = 1000 / 20000.0;
-        public const double soundcard_MS = 1000 / 44100.0;
+        public const double regularLEDStrip_MS = 1000 / 400.0;
+        public const double fastestLEDStrip_MS = 1000 / 1000.0;
+        public const double regular_MS = 1000 / 44100.0;
+        public const double double_MS = 1000 / 88200.0;
 
         // The systray icon and main app control.
         private NotifyIcon systrayIcon;
-            private SamplerApp SamplerApp;
+        private SamplerApp SamplerApp;
 
         // Set the program as disabled, COMPort as null by default and get settings indexes.
         private Boolean enabled = false;
@@ -62,17 +61,17 @@ namespace WASAPI_Arduino
                     new MenuItem("Slow (30Hz)", (s, e) => UpdateSpeed_Click(s, Slow_MS, 0)),
                     new MenuItem("Medium (60Hz)", (s, e) => UpdateSpeed_Click(s, Med_MS, 1)),
                     new MenuItem("Fast (120Hz)", (s, e) => UpdateSpeed_Click(s, Fast_MS, 2)),
-                    new MenuItem("Veryfast (400Hz)", (s, e) => UpdateSpeed_Click(s, Veryfast_MS, 3)),
-                    new MenuItem("Fastest LED strip (1000Hz)", (s, e) => UpdateSpeed_Click(s, Exp_MS, 4)),
-                    new MenuItem("Still not Nyquist (20000Hz)", (s,e) => UpdateSpeed_Click(s, doubleYolo_MS,5)),
-                    new MenuItem("Regular audio output (44100Hz)", (s,e) => UpdateSpeed_Click(s, soundcard_MS,5))
+                    new MenuItem("Regular LED Strip (400Hz)", (s, e) => UpdateSpeed_Click(s, regularLEDStrip_MS, 3)),
+                    new MenuItem("Fastest LED strip (1000Hz)", (s, e) => UpdateSpeed_Click(s, fastestLEDStrip_MS, 4)),
+                    new MenuItem("Regular audio output (44100Hz)", (s, e) => UpdateSpeed_Click(s, regular_MS,5)),
+                    new MenuItem("Studio audio output (88200Hz)", (s,e) => UpdateSpeed_Click(s, double_MS, 6))
                 }),
                 new MenuItem("Sound columns", new MenuItem[]{
-                    // No fking clue if that's a bad idea to implement a boolean here, seems to work fine.
                     new MenuItem("Bass", (s,e) => AudioRange_Handling(s,true,0)),
                     new MenuItem("Octaves", (s,e) => AudioRange_Handling(s,false,1)),
                     }),
-               new MenuItem("Corrector", Corrector),
+                new MenuItem("Corrector", Corrector),
+                new MenuItem("Colours palette", Palette),
                 new MenuItem("Exit WASAPI Arduino", OnApplicationExit)
             }); ;
 
@@ -95,15 +94,33 @@ namespace WASAPI_Arduino
             SamplerApp.Shutdown(sender, e);
             systrayIcon.Visible = false;
             Application.Exit();
-
         }
         
         private void Corrector(object sender, EventArgs e)
-        {
-            
+        {            
                 Form1 CorrectorForm = new Form1();
-                CorrectorForm.Show();
-            
+                CorrectorForm.Show();            
+        }
+
+        // Function creating a new RGB palette, setting an adjacent byte and sending it to Arduino.
+        private void Palette(object sender, EventArgs e)
+        {
+            ColorDialog colourDlg = new ColorDialog();
+            colourDlg.AllowFullOpen = true;
+            colourDlg.FullOpen = true;
+            colourDlg.AnyColor = true;
+            colourDlg.SolidColorOnly = false;
+            colourDlg.Color = Settings.Default.Colour;
+            if (colourDlg.ShowDialog() == DialogResult.OK)
+            {
+                Color colour = colourDlg.Color;
+                byte R = colour.R;
+                byte G = colour.G;
+                byte B = colour.B;
+                byte[] RGB = { R, G, B };
+                SamplerApp.COMSetColour(RGB);
+                Settings.Default.Colour = colour;
+            }
         }
 
         // Get a list of serial port names, failsafe in case it will not detect any devices.
@@ -135,6 +152,7 @@ namespace WASAPI_Arduino
         /*
          * Left click callback handler. Enables/disables, switches between icons.
          */
+        
         private void SystrayIcon_Click(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
