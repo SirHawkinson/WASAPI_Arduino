@@ -146,5 +146,8 @@
     <Setting Name="Colour" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">White</Value>
     </Setting>
+    <Setting Name="CustomColours" Type="System.Int32[]" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

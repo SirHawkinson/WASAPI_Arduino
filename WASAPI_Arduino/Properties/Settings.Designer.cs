@@ -598,5 +598,16 @@ namespace WASAPI_Arduino.Properties {
                 this["Colour"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public int[] CustomColours {
+            get {
+                return ((int[])(this["CustomColours"]));
+            }
+            set {
+                this["CustomColours"] = value;
+            }
+        }
     }
 }

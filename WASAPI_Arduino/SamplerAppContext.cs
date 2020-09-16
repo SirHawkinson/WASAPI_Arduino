@@ -110,6 +110,13 @@ namespace WASAPI_Arduino
             colourDlg.FullOpen = true;
             colourDlg.AnyColor = true;
             colourDlg.SolidColorOnly = false;
+            colourDlg.CustomColors = Settings.Default.CustomColours;
+
+            // Get the colors
+            int[] customColors = colourDlg.CustomColors;
+
+            // Set the custom colors
+            colourDlg.CustomColors = customColors;
             colourDlg.Color = Settings.Default.Colour;
             if (colourDlg.ShowDialog() == DialogResult.OK)
             {
@@ -120,6 +127,8 @@ namespace WASAPI_Arduino
                 byte[] RGB = { R, G, B };
                 SamplerApp.COMSetColour(RGB);
                 Settings.Default.Colour = colour;
+                Settings.Default.CustomColours = colourDlg.CustomColors;
+                Settings.Default.Save();
             }
         }
 
@@ -149,10 +158,10 @@ namespace WASAPI_Arduino
             Settings.Default.Port = port;
             Settings.Default.portIndex = COMindex;
         }
+
         /*
          * Left click callback handler. Enables/disables, switches between icons.
-         */
-        
+         */        
         private void SystrayIcon_Click(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -208,5 +217,4 @@ namespace WASAPI_Arduino
             }
         }
     }   
-}
- 
+} 
