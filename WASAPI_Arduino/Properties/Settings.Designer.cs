@@ -601,12 +601,193 @@ namespace WASAPI_Arduino.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public int[] CustomColours {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC1 {
             get {
-                return ((int[])(this["CustomColours"]));
+                return ((int)(this["CustomC1"]));
             }
             set {
-                this["CustomColours"] = value;
+                this["CustomC1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC2 {
+            get {
+                return ((int)(this["CustomC2"]));
+            }
+            set {
+                this["CustomC2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC3 {
+            get {
+                return ((int)(this["CustomC3"]));
+            }
+            set {
+                this["CustomC3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC4 {
+            get {
+                return ((int)(this["CustomC4"]));
+            }
+            set {
+                this["CustomC4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC5 {
+            get {
+                return ((int)(this["CustomC5"]));
+            }
+            set {
+                this["CustomC5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC6 {
+            get {
+                return ((int)(this["CustomC6"]));
+            }
+            set {
+                this["CustomC6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC7 {
+            get {
+                return ((int)(this["CustomC7"]));
+            }
+            set {
+                this["CustomC7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC8 {
+            get {
+                return ((int)(this["CustomC8"]));
+            }
+            set {
+                this["CustomC8"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC9 {
+            get {
+                return ((int)(this["CustomC9"]));
+            }
+            set {
+                this["CustomC9"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC10 {
+            get {
+                return ((int)(this["CustomC10"]));
+            }
+            set {
+                this["CustomC10"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC11 {
+            get {
+                return ((int)(this["CustomC11"]));
+            }
+            set {
+                this["CustomC11"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC12 {
+            get {
+                return ((int)(this["CustomC12"]));
+            }
+            set {
+                this["CustomC12"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC13 {
+            get {
+                return ((int)(this["CustomC13"]));
+            }
+            set {
+                this["CustomC13"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC14 {
+            get {
+                return ((int)(this["CustomC14"]));
+            }
+            set {
+                this["CustomC14"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC15 {
+            get {
+                return ((int)(this["CustomC15"]));
+            }
+            set {
+                this["CustomC15"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CustomC16 {
+            get {
+                return ((int)(this["CustomC16"]));
+            }
+            set {
+                this["CustomC16"] = value;
             }
         }
     }

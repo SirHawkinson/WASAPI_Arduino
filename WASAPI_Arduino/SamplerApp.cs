@@ -19,7 +19,7 @@ namespace WASAPI_Arduino
         static SerialPort serialPort;
         private string Port;
         private int baud;
-
+        
         // Ticker that triggers audio re-rendering. User-controllable via the systray menu
         private System.Timers.Timer ticker;
 
@@ -95,7 +95,6 @@ namespace WASAPI_Arduino
         {
             if (enabled)
             {
-
                     serialPort = new SerialPort(Port, baud);
                     // serialPort.ReadTimeout = 250;
                     // serialPort.WriteTimeout = 250;
@@ -105,20 +104,11 @@ namespace WASAPI_Arduino
                     {
                         serialPort.Open();
                     }
-
-                    // Apply saved colour when starting capture
-                    Color colour = Properties.Settings.Default.Colour;
-                    byte R = colour.R;
-                    byte G = colour.G;
-                    byte B = colour.B;
-                    byte[] RGB = { R, G, B };
-                    COMSetColour(RGB);
                     StartCapture();
                     ticker.Start();
-                    
                 }
                 catch(Exception)
-                    {
+                {
 
                 }
             }
@@ -145,22 +135,60 @@ namespace WASAPI_Arduino
             serialPort.Write(b, 0, 1);
             
         }
-               
+
         public void COMSetColour(byte[] data)
         {
-            
+
             if (serialPort.IsOpen == false)
             {
                 serialPort.Open();
             }
-            ticker.Stop();
-            Thread.Sleep(10); // Use if there are issues with sending the colour information
-            serialPort.Write(interrupt, 0, 1);
-            serialPort.Write(data, 0, 3);
-            Thread.Sleep(10);
-            ticker.Start();
+            if (ticker.Enabled == true)
+            {
+                ticker.Stop();
+                Thread.Sleep(10); // Use if there are issues with sending the colour information
+                serialPort.Write(interrupt, 0, 1);
+                serialPort.Write(data, 0, 3);
+                Thread.Sleep(10);
+                ticker.Start();
+                
+            }
+            if (ticker.Enabled == false)
+            {
+                serialPort.Write(interrupt, 0, 1);
+                serialPort.Write(data, 0, 3);
+            }
+            // string bitString = BitConverter.ToString(data);
+            // Console.WriteLine(bitString);
         }
-        
+
+        // Specific LED strip colour control
+        public void COMSetColour(byte[] data, int number)
+        {
+
+            if (serialPort.IsOpen == false)
+            {
+                serialPort.Open();
+            }
+            if (ticker.Enabled == true)
+            {
+                ticker.Stop();
+                Thread.Sleep(10); // Use if there are issues with sending the colour information
+                serialPort.Write(interrupt, 0, 1);
+                serialPort.Write(data, 0, 3);
+                Thread.Sleep(10);
+                ticker.Start();
+
+            }
+            if (ticker.Enabled == false)
+            {
+                serialPort.Write(interrupt, 0, 1);
+                serialPort.Write(data, 0, 3);
+            }
+            // String bitString = BitConverter.ToString(data);
+            // Console.WriteLine(bitString + number);
+        }
+
         /*
          * Update the timer tick speed, which updates the FFT and sound rendering speeds(?).
          */

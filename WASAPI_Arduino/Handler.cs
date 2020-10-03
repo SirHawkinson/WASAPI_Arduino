@@ -34,7 +34,7 @@ namespace WASAPI_Arduino
             double[] normalized = Normalize(raw, bassBased);
             int filtered = Filter(normalized);
             // Real-time debug only
-            // Console.WriteLine(string.Join(" Handler ", normalized));
+            Console.WriteLine(string.Join(" ", normalized));
             SamplerApp samp = new SamplerApp();
             // Send filtered column to COM
             samp.COMSend(filtered);

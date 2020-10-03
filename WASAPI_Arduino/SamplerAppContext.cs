@@ -71,9 +71,11 @@ namespace WASAPI_Arduino
                     new MenuItem("Octaves", (s,e) => AudioRange_Handling(s,false,1)),
                     }),
                 new MenuItem("Corrector", Corrector),
-                new MenuItem("Colours palette", Palette),
+                new MenuItem("Change colour",new MenuItem[]{
+                    new MenuItem("Global change", Palette),
+                    new MenuItem("Multiple strips", NextLed)}),
                 new MenuItem("Exit WASAPI Arduino", OnApplicationExit)
-            }); ;
+            });
 
             // Default options precheck.
             systrayIcon.ContextMenu.MenuItems[0].MenuItems[portIndex].Checked = true;
@@ -98,38 +100,28 @@ namespace WASAPI_Arduino
         
         private void Corrector(object sender, EventArgs e)
         {            
-                Form1 CorrectorForm = new Form1();
-                CorrectorForm.Show();            
+            Form1 CorrectorForm = new Form1();
+            CorrectorForm.Show();            
+        }
+
+        private void NextLed(object sender, EventArgs e)
+        {
+            SpecifyStrip stripForm= new SpecifyStrip();
+            stripForm.Show();                           
         }
 
         // Function creating a new RGB palette, setting an adjacent byte and sending it to Arduino.
         private void Palette(object sender, EventArgs e)
         {
-            ColorDialog colourDlg = new ColorDialog();
-            colourDlg.AllowFullOpen = true;
-            colourDlg.FullOpen = true;
-            colourDlg.AnyColor = true;
-            colourDlg.SolidColorOnly = false;
-            colourDlg.CustomColors = Settings.Default.CustomColours;
-
-            // Get the colors
-            int[] customColors = colourDlg.CustomColors;
-
-            // Set the custom colors
-            colourDlg.CustomColors = customColors;
-            colourDlg.Color = Settings.Default.Colour;
-            if (colourDlg.ShowDialog() == DialogResult.OK)
-            {
-                Color colour = colourDlg.Color;
-                byte R = colour.R;
-                byte G = colour.G;
-                byte B = colour.B;
-                byte[] RGB = { R, G, B };
-                SamplerApp.COMSetColour(RGB);
-                Settings.Default.Colour = colour;
-                Settings.Default.CustomColours = colourDlg.CustomColors;
-                Settings.Default.Save();
-            }
+            colourDlg DialogForm = new colourDlg();
+            byte[] RGB = DialogForm.getColours();
+            if (RGB!=null)
+            SamplerApp.COMSetColour(RGB);
+        }
+                
+        public void NextLEDSend(byte[]RGB, int LEDNumber)
+        {
+            SamplerApp.COMSetColour(RGB, LEDNumber);
         }
 
         // Get a list of serial port names, failsafe in case it will not detect any devices.
@@ -142,6 +134,7 @@ namespace WASAPI_Arduino
                                 "No available ports detected.", MessageBoxButtons.OK);
                 return null;                
             }
+
             else
             {
                 List<string> list = ports.ToList();

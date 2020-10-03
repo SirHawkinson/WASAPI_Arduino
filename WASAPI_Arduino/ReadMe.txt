@@ -26,7 +26,7 @@ WASAPI Arduino
 - Exit closes the application and saves all changes made.
 
 Before uploading the code to your Arduino:
-- Download the FastLED library and copy the SerialControl.ino file into the root folder of the library;
+- Download the FastLED library and copy the SerialControl.ino file into the root folder of the library (or install it in your IDE);
 - Change the NUM_LEDS number to a number of LEDs you are about to drive;
 - LED_PIN value represents a digital pin in your Arduino/clone unit, which will send the signal to LED stripe controller. Bear in mind,
 if you were to change that PIN it must be a PWM pin, which you can check that in your device pinout;
