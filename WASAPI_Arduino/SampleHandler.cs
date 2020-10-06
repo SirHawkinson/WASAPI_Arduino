@@ -13,7 +13,6 @@ namespace WASAPI_Arduino
         // Basic FFT constants.
         const FftSize fftSize = FftSize.Fft2048;
         const int fftSizeInt = (int)fftSize;
-
         
         /*
         * Drop the index to 0 if below this threshold. Helps prevent lingering color after sound
@@ -73,9 +72,8 @@ namespace WASAPI_Arduino
             // Check for no data coming through FFT and send null if true
             if (!fftProvider.IsNewDataAvailable)
             {
-                // Real-time debug only
-                // Console.WriteLine("no new data available");
-                return null;
+                
+                return prevSpectrumValues;
             }
 
             else
@@ -119,6 +117,7 @@ namespace WASAPI_Arduino
                         firstData = _spectrumData.ToArray();
 
                     if (Properties.Settings.Default.corrector)
+
                     /*
                     * Do not apply the corrector when output is less than -100dB, will prevent constant
                     * strip light up. The next part is rather stupid - convert output and corrector to dB,

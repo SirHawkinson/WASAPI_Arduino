@@ -136,7 +136,7 @@ namespace WASAPI_Arduino
             
         }
 
-        public void COMSetColour(byte[] data)
+        public void COMSetColour(string data)
         {
 
             if (serialPort.IsOpen == false)
@@ -148,18 +148,25 @@ namespace WASAPI_Arduino
                 ticker.Stop();
                 Thread.Sleep(10); // Use if there are issues with sending the colour information
                 serialPort.Write(interrupt, 0, 1);
-                serialPort.Write(data, 0, 3);
-                Thread.Sleep(10);
+                serialPort.Write(data);                
+                Console.WriteLine(data);
+                string R = serialPort.ReadLine();
+                string G = serialPort.ReadLine();
+                string B = serialPort.ReadLine();
+                Console.WriteLine(R);
+                Console.WriteLine(G);
+                Console.WriteLine(B);
+                
+                // Thread.Sleep(10);
                 ticker.Start();
                 
             }
             if (ticker.Enabled == false)
             {
                 serialPort.Write(interrupt, 0, 1);
-                serialPort.Write(data, 0, 3);
+                serialPort.Write(data);
             }
-            // string bitString = BitConverter.ToString(data);
-            // Console.WriteLine(bitString);
+            
         }
 
         // Specific LED strip colour control
@@ -269,7 +276,7 @@ namespace WASAPI_Arduino
         private void StartCapture()
         {
             // Initialize hardware capture
-            wasapiCapture = new WasapiLoopbackCapture(10);
+            wasapiCapture = new WasapiLoopbackCapture(25);
             wasapiCapture.Initialize();
 
             // Initialize sample handler

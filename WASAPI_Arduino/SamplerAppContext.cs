@@ -114,7 +114,7 @@ namespace WASAPI_Arduino
         private void Palette(object sender, EventArgs e)
         {
             colourDlg DialogForm = new colourDlg();
-            byte[] RGB = DialogForm.getColours();
+            string RGB = DialogForm.getColours();
             if (RGB!=null)
             SamplerApp.COMSetColour(RGB);
         }

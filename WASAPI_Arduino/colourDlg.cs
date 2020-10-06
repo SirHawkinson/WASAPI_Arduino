@@ -28,7 +28,7 @@ namespace WASAPI_Arduino
             InitializeComponent();
         }
 
-        public byte[] getColours()
+        public string getColours()
         {
             ColorDialog colourDlg = new ColorDialog();
             colourDlg.AllowFullOpen = true;
@@ -45,12 +45,11 @@ namespace WASAPI_Arduino
             if (colourDlg.ShowDialog() == DialogResult.OK)
             {
                 Color colour = colourDlg.Color;
-                byte R = colour.R;
-                byte G = colour.G;
-                byte B = colour.B;
-                byte[] RGB = { R, G, B };
+                int R = colour.R;
+                int G = colour.G;
+                int B = colour.B;
+                string hex = R.ToString("X2") + G.ToString("X2") + B.ToString("X2");
 
-                
                 Settings.Default.Colour = colour;
                 Properties.Settings.Default.CustomC1 = colourDlg.CustomColors[0];
                 Properties.Settings.Default.CustomC2 = colourDlg.CustomColors[1];
@@ -69,7 +68,7 @@ namespace WASAPI_Arduino
                 Properties.Settings.Default.CustomC15 = colourDlg.CustomColors[14];
                 Properties.Settings.Default.CustomC16 = colourDlg.CustomColors[15];
                 Settings.Default.Save();
-                return RGB;
+                return hex;
             }
             else
             {
