@@ -29,6 +29,10 @@ namespace WASAPI_Arduino
         // The systray icon and main app control.
         private NotifyIcon systrayIcon;
         private SamplerApp SamplerApp;
+        private Form1 CorrectorForm;
+        private SpecifyStrip stripForm;
+        // Forms init
+
 
         // Set the program as disabled, COMPort as null by default and get settings indexes.
         private Boolean enabled = false;
@@ -99,15 +103,27 @@ namespace WASAPI_Arduino
         }
         
         private void Corrector(object sender, EventArgs e)
-        {            
-            Form1 CorrectorForm = new Form1();
-            CorrectorForm.Show();            
+        {
+            if(CorrectorForm == null)
+                CorrectorForm = new Form1();
+            else if (CorrectorForm.IsDisposed==true)
+                CorrectorForm = new Form1();
+            if (CorrectorForm.Created == true)
+                CorrectorForm.BringToFront();
+            else
+                CorrectorForm.Show();            
         }
 
         private void NextLed(object sender, EventArgs e)
         {
-            SpecifyStrip stripForm= new SpecifyStrip();
-            stripForm.Show();                           
+            if (stripForm == null)
+                stripForm = new SpecifyStrip();
+            else if (stripForm.IsDisposed == true)
+                stripForm = new SpecifyStrip();
+            if (stripForm.Created == true)
+                stripForm.BringToFront();
+            else
+                stripForm.Show();         
         }
 
         // Function creating a new RGB palette, setting an adjacent byte and sending it to Arduino.
