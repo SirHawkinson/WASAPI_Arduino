@@ -1,7 +1,9 @@
-﻿1. Can be seen as a threat by SmartScreen - Ain't nobody can fix it
+1. Can be seen as a threat by SmartScreen - Ain't nobody can fix it
 2. Having tickrate faster than 65Hz creates ~450 nulls in around 5 minutes of working. Increasing tickrate doesn't
 have an effect in the null creating tempo, while it has a visible effect on how LED stripe behave, so tickrate does
 change.
 3. If you put too high corrector the program will refuse to give proper output, probably normalization side issue. It's 
 fixed once you restart WASAPI Arduino.
-4. Calling for an already openned window creates a new instance of it, instead of giving focus.
+4. Calling for a colour dialog creates another instance (window) of it, instead of focusing on the existing one.
+5. High smoothing value can result in itty bitty light smoldering. Pause/unpause music or disable/enable the program to
+fix it.
