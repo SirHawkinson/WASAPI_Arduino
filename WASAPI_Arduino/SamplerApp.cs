@@ -5,7 +5,6 @@ using System;
 using System.Timers;
 using System.IO.Ports;
 using System.Threading;
-using System.Drawing;
 
 namespace WASAPI_Arduino
 {
@@ -40,7 +39,7 @@ namespace WASAPI_Arduino
         public double[] valuesToSend = new double[11];
 
         // Interrupt byte to send to Arduino for setting colours 
-        byte[] interrupt = BitConverter.GetBytes(101); 
+        byte[] interrupt = BitConverter.GetBytes(101);
 
         /* The weight given to the previous sample for time-based smoothing. High value works great when 
          * sending it to the LED strip when the software is set to a high refresh rate, making the 
@@ -112,6 +111,7 @@ namespace WASAPI_Arduino
 
                 }
             }
+
             else
             {
                 StopCapture();
@@ -133,7 +133,8 @@ namespace WASAPI_Arduino
         {
             byte[] b = BitConverter.GetBytes(data);
             serialPort.Write(b, 0, 1);
-            
+            // string dupa = serialPort.ReadLine();
+            // Console.WriteLine(dupa);
         }
 
         public void COMSetColour(string data)
@@ -149,14 +150,6 @@ namespace WASAPI_Arduino
                 Thread.Sleep(10); // Use if there are issues with sending the colour information
                 serialPort.Write(interrupt, 0, 1);
                 serialPort.Write(data);                
-                Console.WriteLine(data);
-                string R = serialPort.ReadLine();
-                string G = serialPort.ReadLine();
-                string B = serialPort.ReadLine();
-                Console.WriteLine(R);
-                Console.WriteLine(G);
-                Console.WriteLine(B);
-                
                 // Thread.Sleep(10);
                 ticker.Start();
                 

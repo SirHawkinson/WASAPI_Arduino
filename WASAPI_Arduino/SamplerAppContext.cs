@@ -56,7 +56,8 @@ namespace WASAPI_Arduino
 
             MenuItem COMList = new MenuItem("COM List");
 
-            COMlist().ForEach(COM => COMList.MenuItems.Add(new MenuItem(COM, (s, e) => SetCOMPort(s, COM.ToString(), COMList.Index))));
+            List<string> portList = COMlist();
+            COMlist().ForEach(COM => COMList.MenuItems.Add(new MenuItem(COM, (s, e) => GetCOMIndex(s, COM.ToString(), portList))));
             systrayIcon = new NotifyIcon();
 
             systrayIcon.ContextMenu = new ContextMenu(new MenuItem[] {
@@ -216,7 +217,17 @@ namespace WASAPI_Arduino
             Settings.Default.bassBased = Bass;
             Settings.Default.audioHandlingIndex = index;
         }
+        private void GetCOMIndex(object sender, string port, List<string> COMList)
+        {
+            foreach (string listPort in COMList)
+            {
+                if (port == listPort)
+                {
+                    SetCOMPort(sender, port, COMList.IndexOf(listPort));
+                }
+            }
 
+        }
         // Deactivate other list options after pressing one.
         private void CheckMeAndUncheckSiblings(MenuItem me)
         {

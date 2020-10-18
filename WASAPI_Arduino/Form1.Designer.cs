@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using WASAPI_Arduino.Properties;
 
 namespace WASAPI_Arduino
 {
@@ -515,7 +516,7 @@ namespace WASAPI_Arduino
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(636, 395);
+            this.ClientSize = new System.Drawing.Size(636, 356);
             this.Controls.Add(this.textBox13);
             this.Controls.Add(this.textBox12);
             this.Controls.Add(this.label13);
@@ -556,6 +557,7 @@ namespace WASAPI_Arduino
             this.Controls.Add(this.trackBar3);
             this.Controls.Add(this.trackBar2);
             this.Controls.Add(this.trackBar1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";

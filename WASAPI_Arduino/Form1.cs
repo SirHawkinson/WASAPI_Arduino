@@ -752,7 +752,8 @@ namespace WASAPI_Arduino
         {
             Properties.Settings.Default.corrector = !Properties.Settings.Default.corrector;
         }
-                       
+
+        
     }
 
 }
