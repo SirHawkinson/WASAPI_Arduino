@@ -57,6 +57,8 @@ namespace WASAPI_Arduino
             MenuItem COMList = new MenuItem("COM List");
 
             List<string> portList = COMlist();
+            GetCOMIndex(selectedPort, portList);
+
             COMlist().ForEach(COM => COMList.MenuItems.Add(new MenuItem(COM, (s, e) => GetCOMIndex(s, COM.ToString(), portList))));
             systrayIcon = new NotifyIcon();
 
@@ -224,6 +226,17 @@ namespace WASAPI_Arduino
                 if (port == listPort)
                 {
                     SetCOMPort(sender, port, COMList.IndexOf(listPort));
+                }
+            }
+
+        }
+        private void GetCOMIndex(string port, List<string> COMList)
+        {
+            foreach (string listPort in COMList)
+            {
+                if (port == listPort)
+                {
+                    this.portIndex=COMList.IndexOf(listPort);
                 }
             }
 
