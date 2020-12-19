@@ -71,8 +71,7 @@ namespace WASAPI_Arduino
 
             // Check for no data coming through FFT and send null if true
             if (!fftProvider.IsNewDataAvailable)
-            {
-                
+            {                
                 return prevSpectrumValues;
             }
 
@@ -136,10 +135,10 @@ namespace WASAPI_Arduino
                     * between beats it's not even introducing a flicker. Also, values are so high, you can't even 
                     * use a positive corrector, else you're stuck with constant 100s. I'm including a dB method 
                     * as a comment, if you want to use it, but there's no practical reason to do so.
-                    * On a side note, you'd also want to edit (or delete, if you wanted to)the Normalize function 
+                    * On a side note, you'd also want to edit (or delete, if you wanted to) the Normalize function 
                     * in Handler class and make the height multiplier of 0.00 to 1.00, so it'd steer the resulting 
                     * dB as a percentage value. You'll also want to apply a filter so it'd bring values over 100 
-                    * back to 100. An additional preapplied A corrector seems to be needed too.
+                    * back to 100. An additional preapplied A corrector seems to be needed for that method too.
                     */
                     for (int i = 0; i < _spectrumData.ToArray().Length; i++)
                     {

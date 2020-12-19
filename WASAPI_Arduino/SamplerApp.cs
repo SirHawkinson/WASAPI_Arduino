@@ -61,6 +61,7 @@ namespace WASAPI_Arduino
         // use octaves to analyze sound.
         public Boolean bassBased;
         private Boolean reload;
+        string done = "";
 
         /*
          * Basic initialization. No audio is read until SetEnable(true) is called.
@@ -133,8 +134,9 @@ namespace WASAPI_Arduino
         {
             byte[] b = BitConverter.GetBytes(data);
             serialPort.Write(b, 0, 1);
-            // string dupa = serialPort.ReadLine();
-            // Console.WriteLine(dupa);
+           // Arduino answer check 
+           // string dupa = serialPort.ReadLine();
+           // Console.WriteLine(dupa);
         }
 
         public void COMSetColour(string data)
@@ -146,11 +148,20 @@ namespace WASAPI_Arduino
             }
             if (ticker.Enabled == true)
             {
+                
+                StopCapture();
                 ticker.Stop();
                 Thread.Sleep(10); // Use if there are issues with sending the colour information
                 serialPort.Write(interrupt, 0, 1);
-                serialPort.Write(data);                
-                // Thread.Sleep(10);
+                serialPort.Write(data);
+                Thread.Sleep(10);
+                // Synchronization thingy, fixes hang ups or long colour swapping
+                while (done != "done\r")
+                { 
+                done = serialPort.ReadLine();
+                }
+                done = "";
+                StartCapture();
                 ticker.Start();
                 
             }
@@ -257,7 +268,8 @@ namespace WASAPI_Arduino
                 valuesToSend = zero;
             else
                 valuesToSend = correctors;
-                double[] values = SampleHandler.GetSpectrumValues(smoothing, valuesToSend);
+          
+            double[] values = SampleHandler.GetSpectrumValues(smoothing, valuesToSend);
            
                 Handler.SendData(values, bassBased);
         }

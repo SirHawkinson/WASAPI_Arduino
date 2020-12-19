@@ -12,7 +12,6 @@ namespace WASAPI_Arduino
         */
         private double entropy = Properties.Settings.Default.entropy;
         public double maxSeenEver = 0;
-
         /* This is the value that basically serves as a "volume" bar and sets a maximum signal value
          * feed to the Arduino. In example, if you drive your LED strip by a variable brightness,
          * setting the "height" variable to a 100 gives you an output of 0-100, which correlates
@@ -29,16 +28,15 @@ namespace WASAPI_Arduino
         */
 
         public void SendData(double[] raw, bool bassBased)
-        {
-            
+        {            
             double[] normalized = Normalize(raw, bassBased);
             int filtered = Filter(normalized);
-            // Real-time debug only
+            // Real-time debug only - check FFT columns values
             Console.WriteLine(string.Join(" ", normalized));
             SamplerApp samp = new SamplerApp();
             // Send filtered column to COM
             samp.COMSend(filtered);
-
+            
         }
         
         /*
@@ -112,7 +110,7 @@ namespace WASAPI_Arduino
             maxSeenEver *= entropy;
             return normalized;
                }
-            // Slowly decrease maxEverSeen to keep things normalizing after a giant spike
+            
             
         }
 
