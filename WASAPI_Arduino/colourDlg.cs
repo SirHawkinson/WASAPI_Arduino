@@ -52,7 +52,7 @@ namespace WASAPI_Arduino
                 int G = colour.G;
                 int B = colour.B;
                 string hex = R.ToString("X2") + G.ToString("X2") + B.ToString("X2");
-
+                Settings.Default.hex = hex;
                 Settings.Default.Colour = colour;
                 Properties.Settings.Default.CustomC1 = colourDialog.CustomColors[0];
                 Properties.Settings.Default.CustomC2 = colourDialog.CustomColors[1];

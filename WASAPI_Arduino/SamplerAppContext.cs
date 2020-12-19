@@ -90,6 +90,7 @@ namespace WASAPI_Arduino
             systrayIcon.Icon = Icon.FromHandle(Resources.WASAPI_ArduinoOFF.GetHicon());
             systrayIcon.Text = "WASAPI Arduino";
             systrayIcon.Visible = true;
+            SamplerApp.COMSetColour(Settings.Default.hex);
         }
 
         /*

@@ -83,7 +83,6 @@ namespace WASAPI_Arduino
             this.Port = Properties.Settings.Default.Port;
             this.baud = 115200;
 
-
             // Create a handler
             Handler = new Handler();
         }
@@ -95,9 +94,7 @@ namespace WASAPI_Arduino
         {
             if (enabled)
             {
-                    serialPort = new SerialPort(Port, baud);
-                    // serialPort.ReadTimeout = 250;
-                    // serialPort.WriteTimeout = 250;
+                
                 try
                 {
                     if (serialPort.IsOpen == false)
@@ -135,40 +132,53 @@ namespace WASAPI_Arduino
             byte[] b = BitConverter.GetBytes(data);
             serialPort.Write(b, 0, 1);
            // Arduino answer check 
-           // string dupa = serialPort.ReadLine();
-           // Console.WriteLine(dupa);
+           // string answer = serialPort.ReadLine();
+           // Console.WriteLine(answer);
         }
 
         public void COMSetColour(string data)
         {
-
-            if (serialPort.IsOpen == false)
+            if (serialPort == null)
             {
+                serialPort = new SerialPort(Port, baud);
                 serialPort.Open();
             }
+            else if (serialPort.IsOpen != true)
+                serialPort.Open();
             if (ticker.Enabled == true)
             {
                 
                 StopCapture();
                 ticker.Stop();
-                Thread.Sleep(10); // Use if there are issues with sending the colour information
+                Thread.Sleep(10); // Use if there are issues with sending the colour information, it's here so the program will take a short break and send all already acquired data through
+                                  //USB port, which will let Arduino compile incoming colour data in peace. 
                 serialPort.Write(interrupt, 0, 1);
-                serialPort.Write(data);
+                serialPort.Write(data);                
                 Thread.Sleep(10);
                 // Synchronization thingy, fixes hang ups or long colour swapping
-                while (done != "done\r")
-                { 
-                done = serialPort.ReadLine();
+                while (done != "go\r")
+                {
+                    done = serialPort.ReadLine();
                 }
                 done = "";
+                // Thread.Sleep(100); // Use, if LEDs hang up in a solid colour, it's related to Arduinos ability to process readiness string into a byte, then send through USB. Adapt Sleep time to 
+                                      // your units requirement, its duration will vary from unit to unit.
                 StartCapture();
                 ticker.Start();
                 
             }
-            if (ticker.Enabled == false)
+
+            else
             {
                 serialPort.Write(interrupt, 0, 1);
                 serialPort.Write(data);
+                Thread.Sleep(10);
+                while (done != "go\r")
+                {
+                    done = serialPort.ReadLine();
+                }
+                done = "";
+                serialPort.Close();
             }
             
         }
@@ -241,7 +251,7 @@ namespace WASAPI_Arduino
             reload = Properties.Settings.Default.reload;
 
             if (reload)
-            { // Reinitialize columns only if the "reload" bool is true, saves computing power (oy, this isn't
+            { // Reinitialize columns only if the "reload" bool is true, saves computing power (oi, this isn't
               // Pentium IV times!! *Who cares*).
                 double smoothing = Properties.Settings.Default.smoothing;
                 double Hz31Column = Properties.Settings.Default.Hz31;
@@ -311,6 +321,10 @@ namespace WASAPI_Arduino
                 wasapiCapture.Dispose();
 
                 SampleHandler = null;
+            }
+            else
+            {
+
             }
         }
 

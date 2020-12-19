@@ -194,5 +194,8 @@
     <Setting Name="CustomC16" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="hex" Type="System.String" Scope="User">
+      <Value Profile="(Default)">FFFFFF</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
