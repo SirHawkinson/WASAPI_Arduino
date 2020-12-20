@@ -802,5 +802,17 @@ namespace WASAPI_Arduino.Properties {
                 this["hex"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ranalready {
+            get {
+                return ((bool)(this["ranalready"]));
+            }
+            set {
+                this["ranalready"] = value;
+            }
+        }
     }
 }

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WASAPI Arduino")]
+[assembly: AssemblyTitle("WASAPI_Arduino")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WASAPI Arduino")]
+[assembly: AssemblyProduct("WASAPI_Arduino")]
 [assembly: AssemblyCopyright("Copyright ©  2020 Lukasz Jastrzebowski")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

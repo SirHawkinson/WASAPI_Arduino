@@ -197,5 +197,8 @@
     <Setting Name="hex" Type="System.String" Scope="User">
       <Value Profile="(Default)">FFFFFF</Value>
     </Setting>
+    <Setting Name="ranalready" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -90,7 +90,11 @@ namespace WASAPI_Arduino
             systrayIcon.Icon = Icon.FromHandle(Resources.WASAPI_ArduinoOFF.GetHicon());
             systrayIcon.Text = "WASAPI Arduino";
             systrayIcon.Visible = true;
-            SamplerApp.COMSetColour(Settings.Default.hex);
+            if (Settings.Default.ranalready == true)
+            {
+                SamplerApp.COMSetColour(Settings.Default.hex);
+            }
+            
         }
 
         /*
@@ -101,6 +105,7 @@ namespace WASAPI_Arduino
         {
             SamplerApp.Shutdown(sender, e);
             systrayIcon.Visible = false;
+            Settings.Default.ranalready = true;
             Application.Exit();
         }
         

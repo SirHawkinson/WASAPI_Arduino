@@ -78,9 +78,9 @@ namespace WASAPI_Arduino
             Hz1000Column,Hz2000Column,Hz4000Column,Hz8000Column,Hz16000Column,preamp};
             this.smoothing = Properties.Settings.Default.smoothing;
             this.bassBased = Properties.Settings.Default.bassBased;
+            this.Port = Properties.Settings.Default.Port;
 
             // Init the COM port and USB baud rate.
-            this.Port = Properties.Settings.Default.Port;
             this.baud = 115200;
 
             // Create a handler
@@ -99,6 +99,7 @@ namespace WASAPI_Arduino
                 {
                     if (serialPort.IsOpen == false)
                     {
+                        serialPort = new SerialPort(Port, baud);
                         serialPort.Open();
                     }
                     StartCapture();
@@ -140,6 +141,7 @@ namespace WASAPI_Arduino
         {
             if (serialPort == null)
             {
+                this.Port = Properties.Settings.Default.Port;
                 serialPort = new SerialPort(Port, baud);
                 serialPort.Open();
             }
