@@ -15,6 +15,7 @@ namespace WASAPI_Arduino
         private int previousHeight=100;
         private double previousValue=100;
 
+        private Form3 CorrectHelp;
 
         public Form1()
         {
@@ -753,7 +754,22 @@ namespace WASAPI_Arduino
             Properties.Settings.Default.corrector = !Properties.Settings.Default.corrector;
         }
 
-        
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (CorrectHelp == null)
+                CorrectHelp = new Form3();
+            else if (CorrectHelp.IsDisposed == true)
+                CorrectHelp = new Form3();
+            if (CorrectHelp.Created == true)
+                CorrectHelp.BringToFront();
+            else
+                CorrectHelp.Show();
+        }
     }
 
 }

@@ -30,6 +30,7 @@ namespace WASAPI_Arduino
         private NotifyIcon systrayIcon;
         private SamplerApp SamplerApp;
         private Form1 CorrectorForm;
+        private Form2 Help;
         private SpecifyStrip stripForm;
         // Forms init
 
@@ -79,6 +80,7 @@ namespace WASAPI_Arduino
                 new MenuItem("Change colour",new MenuItem[]{
                     new MenuItem("Global change", Palette),
                     new MenuItem("Multiple strips", NextLed)}),
+                new MenuItem("Help",HelpForm),
                 new MenuItem("Exit WASAPI Arduino", OnApplicationExit)
             });
 
@@ -120,7 +122,17 @@ namespace WASAPI_Arduino
             else
                 CorrectorForm.Show();            
         }
-
+        private void HelpForm(object sender, EventArgs e)
+        {
+            if (Help == null)
+                Help = new Form2();
+            else if (Help.IsDisposed == true)
+                Help = new Form2();
+            if (Help.Created == true)
+                Help.BringToFront();
+            else
+                Help.Show();
+        }
         private void NextLed(object sender, EventArgs e)
         {
             if (stripForm == null)
