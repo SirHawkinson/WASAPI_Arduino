@@ -97,7 +97,7 @@ namespace WASAPI_Arduino.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int updateSpeedIndex {
             get {
                 return ((int)(this["updateSpeedIndex"]));
@@ -812,6 +812,30 @@ namespace WASAPI_Arduino.Properties {
             }
             set {
                 this["ranalready"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool StartupBeh {
+            get {
+                return ((bool)(this["StartupBeh"]));
+            }
+            set {
+                this["StartupBeh"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool StartWithWin {
+            get {
+                return ((bool)(this["StartWithWin"]));
+            }
+            set {
+                this["StartWithWin"] = value;
             }
         }
     }

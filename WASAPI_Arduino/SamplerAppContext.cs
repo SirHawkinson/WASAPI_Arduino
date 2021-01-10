@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Win32;
+using System.Reflection;
 
 namespace WASAPI_Arduino
 {
@@ -62,16 +64,8 @@ namespace WASAPI_Arduino
             systrayIcon = new NotifyIcon();
 
             systrayIcon.ContextMenu = new ContextMenu(new MenuItem[] {
-                COMList,
-                new MenuItem("Update Speed", new MenuItem[] {
-                    new MenuItem("Slow (30Hz)", (s, e) => UpdateSpeed_Click(s, Slow_MS, 0)),
-                    new MenuItem("Medium (60Hz)", (s, e) => UpdateSpeed_Click(s, Med_MS, 1)),
-                    new MenuItem("Fast (120Hz)", (s, e) => UpdateSpeed_Click(s, Fast_MS, 2)),
-                    new MenuItem("Regular LED Strip (400Hz)", (s, e) => UpdateSpeed_Click(s, regularLEDStrip_MS, 3)),
-                    new MenuItem("Fastest LED strip (1000Hz)", (s, e) => UpdateSpeed_Click(s, fastestLEDStrip_MS, 4)),
-                    new MenuItem("Regular audio output (44100Hz)", (s, e) => UpdateSpeed_Click(s, regular_MS,5)),
-                    new MenuItem("Studio audio output (88200Hz)", (s,e) => UpdateSpeed_Click(s, double_MS, 6))
-                }),
+                
+                
                 new MenuItem("Sound columns", new MenuItem[]{
                     new MenuItem("Bass", (s,e) => AudioRange_Handling(s,true,0)),
                     new MenuItem("Octaves", (s,e) => AudioRange_Handling(s,false,1)),
@@ -80,21 +74,48 @@ namespace WASAPI_Arduino
                 new MenuItem("Change colour",new MenuItem[]{
                     new MenuItem("Global change", Palette),
                     new MenuItem("Multiple strips", NextLed)}),
-                new MenuItem("Help",HelpForm),
+                new MenuItem("Settings", new MenuItem[] {
+                    COMList,
+                    new MenuItem("Update Speed", new MenuItem[] {
+                        new MenuItem("Slow (30Hz)", (s, e) => UpdateSpeed_Click(s, Slow_MS, 0)),
+                        new MenuItem("Medium (60Hz)", (s, e) => UpdateSpeed_Click(s, Med_MS, 1)),
+                        /* Options below are redundant I guess, 
+                        
+                        new MenuItem("Fast (120Hz)", (s, e) => UpdateSpeed_Click(s, Fast_MS, 2)),
+                        new MenuItem("Regular LED Strip (400Hz)", (s, e) => UpdateSpeed_Click(s, regularLEDStrip_MS, 3)),
+                        new MenuItem("Fastest LED strip (1000Hz)", (s, e) => UpdateSpeed_Click(s, fastestLEDStrip_MS, 4)),
+                        */
+                        new MenuItem("Regular audio output (44100Hz)", (s, e) => UpdateSpeed_Click(s, regular_MS,2)),
+                        new MenuItem("Studio audio output (88200Hz)", (s,e) => UpdateSpeed_Click(s, double_MS, 3))
+                    }),
+                    new MenuItem("Start with Windows", SetAutostart),
+                    new MenuItem("Launch on startup", SetStartupBeh)
+                }),
+                new MenuItem("Help", HelpForm),
                 new MenuItem("Exit WASAPI Arduino", OnApplicationExit)
             });
 
             // Default options precheck.
-            systrayIcon.ContextMenu.MenuItems[0].MenuItems[portIndex].Checked = true;
-            systrayIcon.ContextMenu.MenuItems[1].MenuItems[updateSpeedIndex].Checked = true;
-            systrayIcon.ContextMenu.MenuItems[2].MenuItems[audioHandlingIndex].Checked = true;
+            systrayIcon.ContextMenu.MenuItems[0].MenuItems[audioHandlingIndex].Checked = true;
+            systrayIcon.ContextMenu.MenuItems[3].MenuItems[0].MenuItems[portIndex].Checked = true;
+            systrayIcon.ContextMenu.MenuItems[3].MenuItems[1].MenuItems[updateSpeedIndex].Checked = true;
+            systrayIcon.ContextMenu.MenuItems[3].MenuItems[2].Checked = Settings.Default.StartWithWin;
+            systrayIcon.ContextMenu.MenuItems[3].MenuItems[3].Checked = Settings.Default.StartupBeh; 
             systrayIcon.MouseClick += SystrayIcon_Click;
             systrayIcon.Icon = Icon.FromHandle(Resources.WASAPI_ArduinoOFF.GetHicon());
             systrayIcon.Text = "WASAPI Arduino";
             systrayIcon.Visible = true;
+            
             if (Settings.Default.ranalready == true)
             {
                 SamplerApp.COMSetColour(Settings.Default.hex);
+            }
+
+            if(Settings.Default.StartupBeh)
+            {
+                enabled = true;
+                systrayIcon.Icon = Icon.FromHandle(Resources.WASAPI_ArduinoON.GetHicon());
+                SamplerApp.SetEnabled(enabled);
             }
             
         }
@@ -187,9 +208,38 @@ namespace WASAPI_Arduino
             Settings.Default.portIndex = COMindex;
         }
 
+        // Autostart with windows
+        private void SetAutostart(object sender, EventArgs e)
+        {
+            Settings.Default.StartWithWin = !Settings.Default.StartWithWin;
+            // Is there a neater way to do this?
+            systrayIcon.ContextMenu.MenuItems[3].MenuItems[2].Checked=!systrayIcon.ContextMenu.MenuItems[3].MenuItems[2].Checked;
+            bool chkBox = systrayIcon.ContextMenu.MenuItems[3].MenuItems[2].Checked;
+
+            RegistryKey rk = Registry.CurrentUser.OpenSubKey
+                ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+            // Add registry value to autostart keys
+            if (chkBox)
+                rk.SetValue("WASAPI_Arduino", Application.ExecutablePath);
+
+            // Delete the key
+            else
+                rk.DeleteValue("WASAPI_Arduino", false);
+
+        }
+
+        // Automatically start working
+        private void SetStartupBeh(object sender, EventArgs e)  
+        {
+            Settings.Default.StartupBeh = !Settings.Default.StartupBeh;
+
+            systrayIcon.ContextMenu.MenuItems[3].MenuItems[3].Checked = !systrayIcon.ContextMenu.MenuItems[3].MenuItems[3].Checked;
+        }
+
         /*
          * Left click callback handler. Enables/disables, switches between icons.
-         */        
+         */
         private void SystrayIcon_Click(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)

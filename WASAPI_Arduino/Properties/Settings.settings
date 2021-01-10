@@ -21,7 +21,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="updateSpeedIndex" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">3</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="audioHandlingIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -198,6 +198,12 @@
       <Value Profile="(Default)">FFFFFF</Value>
     </Setting>
     <Setting Name="ranalready" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="StartupBeh" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="StartWithWin" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
