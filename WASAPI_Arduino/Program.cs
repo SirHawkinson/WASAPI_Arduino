@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using System;
 
 namespace WASAPI_Arduino
 {
@@ -7,11 +8,18 @@ namespace WASAPI_Arduino
     {
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            SamplerAppContext app = new SamplerAppContext();
-            Application.ApplicationExit += app.OnApplicationExit;
-            Application.Run(app);
-        }   
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                SamplerAppContext app = new SamplerAppContext();
+                Application.ApplicationExit += app.OnApplicationExit;
+                Application.Run(app);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            }
     }
 }

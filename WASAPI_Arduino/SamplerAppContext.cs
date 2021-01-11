@@ -2,11 +2,13 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 using System.IO.Ports;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Win32;
-using System.Reflection;
+using IWshRuntimeLibrary;
+using Shell32;
 
 namespace WASAPI_Arduino
 {
@@ -212,21 +214,24 @@ namespace WASAPI_Arduino
         private void SetAutostart(object sender, EventArgs e)
         {
             Settings.Default.StartWithWin = !Settings.Default.StartWithWin;
-            // Is there a neater way to do this?
-            systrayIcon.ContextMenu.MenuItems[3].MenuItems[2].Checked=!systrayIcon.ContextMenu.MenuItems[3].MenuItems[2].Checked;
+            systrayIcon.ContextMenu.MenuItems[3].MenuItems[2].Checked = !systrayIcon.ContextMenu.MenuItems[3].MenuItems[2].Checked;
             bool chkBox = systrayIcon.ContextMenu.MenuItems[3].MenuItems[2].Checked;
 
-            RegistryKey rk = Registry.CurrentUser.OpenSubKey
-                ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            WshShell wshShell = new WshShell();
+            IWshRuntimeLibrary.IWshShortcut shortcut;
+            string startUpFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
 
-            // Add registry value to autostart keys
-            if (chkBox)
-                rk.SetValue("WASAPI_Arduino", Application.ExecutablePath);
+            // Create the shortcut
+            shortcut =(IWshRuntimeLibrary.IWshShortcut)wshShell.CreateShortcut(startUpFolderPath + "\\" + Application.ProductName + ".lnk");
+            shortcut.TargetPath = Application.ExecutablePath;
+            shortcut.WorkingDirectory = Application.StartupPath;
+            shortcut.Description = "Launch My Application";
+            // shortcut.IconLocation = Application.StartupPath + @"\App.ico";
 
-            // Delete the key
-            else
-                rk.DeleteValue("WASAPI_Arduino", false);
-
+            shortcut.Save();
+            if (!systrayIcon.ContextMenu.MenuItems[3].MenuItems[2].Checked)
+            System.IO.File.Delete(startUpFolderPath+"\\"+Application.ProductName+".lnk");
+            
         }
 
         // Automatically start working
